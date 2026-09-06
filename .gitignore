@@ -3,7 +3,7 @@
 /data
 # Manuscript supplied as an input; not edited or published by this experiment.
 /Portfolio optimization.docx
-/.venv/
+.venv/
 /venv/
 /.env
 /.env.*
