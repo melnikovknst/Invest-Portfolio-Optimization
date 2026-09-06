@@ -1,0 +1,29 @@
+# Raw prices and SEC archives are local inputs, never Git artifacts.
+/Data
+/data
+# Manuscript supplied as an input; not edited or published by this experiment.
+/Portfolio optimization.docx
+/.venv/
+/venv/
+/.env
+/.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+.idea/
+.vscode/
+/artifacts/cache/
+/artifacts/models/
+/artifacts/figures/
+/artifacts/executed_html/
+/catboost_info/
+/pipeline1_article_outputs/
+*.log
+*.tmp
+~$*.docx
+# Keep executed notebook outputs, compact result tables, and run manifests.
