@@ -1,0 +1,5 @@
+year,fit_date,training_rows,training_dates,last_training_formation,last_training_label_end,prediction_dates,depth,iterations,feature_set,features
+2017,2017-01-03,4200,84,2016-12-01,2016-12-30,12,4,300,price_regime,22
+2018,2018-01-02,4750,95,2017-11-01,2017-11-30,12,4,300,price_regime,22
+2019,2019-01-02,5350,107,2018-11-01,2018-11-30,12,4,300,price_regime,22
+2020,2020-01-02,6000,120,2019-12-02,2019-12-31,12,4,300,price_regime,22

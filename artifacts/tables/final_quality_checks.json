@@ -1,0 +1,45 @@
+{
+  "notebooks": [
+    {
+      "notebook": "baseline.ipynb",
+      "executed_code_cells": 10,
+      "embedded_figures": 3,
+      "rich_tables": 9
+    },
+    {
+      "notebook": "pipeline1_regime_aware_gmv.ipynb",
+      "executed_code_cells": 9,
+      "embedded_figures": 5,
+      "rich_tables": 9
+    },
+    {
+      "notebook": "pipeline2_fundamental_quality_gmv.ipynb",
+      "executed_code_cells": 10,
+      "embedded_figures": 4,
+      "rich_tables": 12
+    },
+    {
+      "notebook": "pipeline3_catboost_risk_gmv.ipynb",
+      "executed_code_cells": 10,
+      "embedded_figures": 6,
+      "rich_tables": 15
+    },
+    {
+      "notebook": "results_comparison.ipynb",
+      "executed_code_cells": 13,
+      "embedded_figures": 3,
+      "rich_tables": 15
+    }
+  ],
+  "unit_and_temporal_tests_passed": 8,
+  "zero_strength_controls_verified": true,
+  "mathematical_code_matches_frozen_spec": true,
+  "notebook_language": "English",
+  "visual_checks": [
+    "comparison wealth/drawdown",
+    "risk comparison",
+    "quality coverage",
+    "calibration and feature importance"
+  ],
+  "input_preservation": "source CSV hashes unchanged; raw data were not rewritten"
+}

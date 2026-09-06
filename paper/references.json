@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "text": "Markowitz, H. (1952). Portfolio selection. The Journal of Finance, 7(1), 77–91.",
+    "url": "https://doi.org/10.1111/j.1540-6261.1952.tb01525.x"
+  },
+  {
+    "id": 2,
+    "text": "Ledoit, O., and Wolf, M. (2004). A well-conditioned estimator for large-dimensional covariance matrices. Journal of Multivariate Analysis, 88(2), 365–411.",
+    "url": "https://doi.org/10.1016/S0047-259X(03)00096-4"
+  },
+  {
+    "id": 3,
+    "text": "Jagannathan, R., and Ma, T. (2003). Risk reduction in large portfolios: Why imposing the wrong constraints helps. The Journal of Finance, 58(4), 1651–1683.",
+    "url": "https://doi.org/10.1111/1540-6261.00580"
+  },
+  {
+    "id": 4,
+    "text": "DeMiguel, V., Garlappi, L., and Uppal, R. (2009). Optimal versus naive diversification: How inefficient is the 1/N portfolio strategy? The Review of Financial Studies, 22(5), 1915–1953.",
+    "url": "https://doi.org/10.1093/rfs/hhm075"
+  },
+  {
+    "id": 5,
+    "text": "Hamilton, J. D. (1989). A new approach to the economic analysis of nonstationary time series and the business cycle. Econometrica, 57(2), 357–384.",
+    "url": "https://doi.org/10.2307/1912559"
+  },
+  {
+    "id": 6,
+    "text": "Ang, A., and Bekaert, G. (2002). International asset allocation with regime shifts. The Review of Financial Studies, 15(4), 1137–1187.",
+    "url": "https://doi.org/10.1093/rfs/15.4.1137"
+  },
+  {
+    "id": 7,
+    "text": "Asness, C. S., Frazzini, A., and Pedersen, L. H. (2019). Quality minus junk. Review of Accounting Studies, 24(1), 34–112.",
+    "url": "https://doi.org/10.1007/s11142-018-9470-2"
+  },
+  {
+    "id": 8,
+    "text": "Prokhorenkova, L., Gusev, G., Vorobev, A., Dorogush, A. V., and Gulin, A. (2018). CatBoost: Unbiased boosting with categorical features. Advances in Neural Information Processing Systems, 31.",
+    "url": "https://proceedings.neurips.cc/paper/2018/hash/14491b756b3a51daac41c24863285549-Abstract.html"
+  },
+  {
+    "id": 9,
+    "text": "Amihud, Y. (2002). Illiquidity and stock returns: Cross-section and time-series effects. Journal of Financial Markets, 5(1), 31–56.",
+    "url": "https://doi.org/10.1016/S1386-4181(01)00024-6"
+  },
+  {
+    "id": 10,
+    "text": "Rockafellar, R. T., and Uryasev, S. (2000). Optimization of conditional value-at-risk. Journal of Risk, 2(3), 21–41.",
+    "url": "https://doi.org/10.21314/JOR.2000.038"
+  },
+  {
+    "id": 11,
+    "text": "Arnott, R. D., Harvey, C. R., and Markowitz, H. (2019). A backtesting protocol in the era of machine learning. The Journal of Financial Data Science, 1(1), 64–74.",
+    "url": "https://doi.org/10.3905/jfds.2019.1.064"
+  },
+  {
+    "id": 12,
+    "text": "Künsch, H. R. (1989). The jackknife and the bootstrap for general stationary observations. The Annals of Statistics, 17(3), 1217–1241.",
+    "url": "https://doi.org/10.1214/aos/1176347265"
+  },
+  {
+    "id": 13,
+    "text": "Kaggle contributor jacksaleeby. S&P 500 OHCLV Stock Data. Kaggle dataset, version 1 used in the local experiment. Source page accessed September 6, 2026; source-file hash is retained in the repository.",
+    "url": "https://www.kaggle.com/datasets/jacksaleeby/s-and-p500-historical-data"
+  },
+  {
+    "id": 14,
+    "text": "US Securities and Exchange Commission. EDGAR application programming interfaces. Company Facts data format and API documentation. Accessed September 6, 2026.",
+    "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces"
+  },
+  {
+    "id": 15,
+    "text": "APA Corporation (2021). Form 8-K12B, filed March 2, 2021. Holding-company reorganization and predecessor identity.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1841666/000119312521063695/d127090d8k12b.htm"
+  },
+  {
+    "id": 16,
+    "text": "BlackRock, Inc. (2024). Form 8-K, filed October 1, 2024. Holding-company reorganization and successor reporting structure.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1364742/000119312524229654/d856279d8k.htm"
+  },
+  {
+    "id": 17,
+    "text": "scikit-learn developers. LedoitWolf estimator documentation. Scaled-identity shrinkage and implementation reference. Accessed September 6, 2026.",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.covariance.LedoitWolf.html"
+  },
+  {
+    "id": 18,
+    "text": "CatBoost developers. Common training parameters. Chronological input handling and regression configuration. Accessed September 6, 2026.",
+    "url": "https://catboost.ai/docs/en/references/training-parameters/common"
+  }
+]

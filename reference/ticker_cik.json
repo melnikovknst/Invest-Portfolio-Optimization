@@ -1,0 +1,352 @@
+[
+  {
+    "ticker": "A",
+    "cik": 1090872,
+    "entity_name": "AGILENT TECHNOLOGIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AAPL",
+    "cik": 320193,
+    "entity_name": "Apple Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ABT",
+    "cik": 1800,
+    "entity_name": "ABBOTT LABORATORIES",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ACGL",
+    "cik": 947484,
+    "entity_name": "ARCH CAPITAL GROUP LTD.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ADBE",
+    "cik": 796343,
+    "entity_name": "ADOBE INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ADI",
+    "cik": 6281,
+    "entity_name": "ANALOG DEVICES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ADP",
+    "cik": 8670,
+    "entity_name": "AUTOMATIC DATA PROCESSING INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AEE",
+    "cik": 1002910,
+    "entity_name": "AMEREN CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AEP",
+    "cik": 4904,
+    "entity_name": "AMERICAN ELECTRIC POWER CO INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AES",
+    "cik": 874761,
+    "entity_name": "AES CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AFL",
+    "cik": 4977,
+    "entity_name": "AFLAC INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AIG",
+    "cik": 5272,
+    "entity_name": "AMERICAN INTERNATIONAL GROUP, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AJG",
+    "cik": 354190,
+    "entity_name": "Arthur J. Gallagher & Co.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AKAM",
+    "cik": 1086222,
+    "entity_name": "AKAMAI TECHNOLOGIES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ALB",
+    "cik": 915913,
+    "entity_name": "ALBEMARLE CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ALL",
+    "cik": 899051,
+    "entity_name": "ALLSTATE CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AMAT",
+    "cik": 6951,
+    "entity_name": "APPLIED MATERIALS INC /DE",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AMD",
+    "cik": 2488,
+    "entity_name": "ADVANCED MICRO DEVICES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AME",
+    "cik": 1037868,
+    "entity_name": "AMETEK INC/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AMGN",
+    "cik": 318154,
+    "entity_name": "AMGEN INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AMT",
+    "cik": 1053507,
+    "entity_name": "AMERICAN TOWER CORP /MA/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AMZN",
+    "cik": 1018724,
+    "entity_name": "AMAZON COM INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "APA",
+    "cik": 1841666,
+    "entity_name": "APA Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "APD",
+    "cik": 2969,
+    "entity_name": "Air Products & Chemicals, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "APH",
+    "cik": 820313,
+    "entity_name": "AMPHENOL CORP /DE/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ARE",
+    "cik": 1035443,
+    "entity_name": "ALEXANDRIA REAL ESTATE EQUITIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ATO",
+    "cik": 731802,
+    "entity_name": "ATMOS ENERGY CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AVB",
+    "cik": 915912,
+    "entity_name": "AVALONBAY COMMUNITIES INC",
+    "source": "https://www.sec.gov/Archives/edgar/data/915912/",
+    "identity_only": true
+  },
+  {
+    "ticker": "AVY",
+    "cik": 8818,
+    "entity_name": "Avery Dennison Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AXP",
+    "cik": 4962,
+    "entity_name": "AMERICAN EXPRESS CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "AZO",
+    "cik": 866787,
+    "entity_name": "AUTOZONE INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BA",
+    "cik": 12927,
+    "entity_name": "BOEING CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BAC",
+    "cik": 70858,
+    "entity_name": "BANK OF AMERICA CORP /DE/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BALL",
+    "cik": 9389,
+    "entity_name": "BALL Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BAX",
+    "cik": 10456,
+    "entity_name": "BAXTER INTERNATIONAL INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BBWI",
+    "cik": 701985,
+    "entity_name": "Bath & Body Works, Inc.",
+    "source": "https://www.sec.gov/Archives/edgar/data/701985/000070198524000015",
+    "identity_only": true
+  },
+  {
+    "ticker": "BBY",
+    "cik": 764478,
+    "entity_name": "BEST BUY CO INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BEN",
+    "cik": 38777,
+    "entity_name": "FRANKLIN TEMPLETON INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BIIB",
+    "cik": 875045,
+    "entity_name": "BIOGEN INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BIO",
+    "cik": 12208,
+    "entity_name": "BIO-RAD LABORATORIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BK",
+    "cik": 1390777,
+    "entity_name": "Bank of New York Mellon Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BKNG",
+    "cik": 1075531,
+    "entity_name": "Booking Holdings Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BKR",
+    "cik": 1701605,
+    "entity_name": "Baker Hughes Co",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BLK",
+    "cik": 2012383,
+    "entity_name": "BlackRock, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BMY",
+    "cik": 14272,
+    "entity_name": "BRISTOL MYERS SQUIBB CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BRK.B",
+    "cik": 1067983,
+    "entity_name": "BERKSHIRE HATHAWAY INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BRO",
+    "cik": 79282,
+    "entity_name": "BROWN & BROWN, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BSX",
+    "cik": 885725,
+    "entity_name": "BOSTON SCIENTIFIC CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "BWA",
+    "cik": 908255,
+    "entity_name": "BORGWARNER INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "C",
+    "cik": 831001,
+    "entity_name": "CITIGROUP INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  }
+]

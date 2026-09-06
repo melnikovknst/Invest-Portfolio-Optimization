@@ -1,0 +1,7 @@
+{
+  "data_version": 1,
+  "file_name": "SP500_Historical_Data.csv",
+  "matching_price_cells": 328650,
+  "sha256": "82f3ab3ab6821c54b67a555c1f52c60dc4c162923499f2a1403c51d08944722a",
+  "source": "https://www.kaggle.com/datasets/jacksaleeby/s-and-p500-historical-data"
+}

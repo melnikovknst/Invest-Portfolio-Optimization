@@ -1,10 +1,10 @@
 # Raw prices and SEC archives are local inputs, never Git artifacts.
 /Data
 /data
-# Manuscript supplied as an input; not edited or published by this experiment.
-/Portfolio optimization.docx
-.venv/
-/venv/
+# The revised manuscript is versioned; rendering intermediates remain local.
+/paper/rendered/
+/.venv
+/venv
 /.env
 /.env.*
 !.env.example
