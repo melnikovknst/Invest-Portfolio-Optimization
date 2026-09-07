@@ -8,6 +8,7 @@ import copy
 import csv
 import hashlib
 import json
+import math
 import re
 from docx import Document
 from docx.shared import Cm, Pt, RGBColor
@@ -31,7 +32,17 @@ def num(x, decimals=3): return f'{float(x):.{decimals}f}'
 def metrics_table(name, columns):
     rows = []
     for r in read_csv(name):
-        rows.append([LABELS[r['']]] + [pct(r[k], d) if mode=='pct' else num(r[k],d) for _,k,mode,d in columns])
+        values = []
+        for _,k,mode,d in columns:
+            if k=='Average Portfolio Quality':
+                split=name.removesuffix('_metrics.csv')
+                path=ART/'results'/split/r['']/'diagnostics.csv'
+                with path.open(newline='') as f:
+                    quality=[float(row['portfolio_quality']) for row in csv.DictReader(f)]
+                verified=bool(quality) and all(math.isfinite(q) for q in quality) and math.isclose(sum(quality)/len(quality),float(r[k]),rel_tol=0,abs_tol=1e-9)
+                values.append(num(r[k],d) if verified else 'N/V')
+            else: values.append(pct(r[k],d) if mode=='pct' else num(r[k],d))
+        rows.append([LABELS[r['']]] + values)
     return [['Strategy']+[h for h,_,_,_ in columns]]+rows
 
 def tables():
@@ -263,6 +274,8 @@ def main():
         for e in st.element.xpath('.//w:pBdr'):e.getparent().remove(e)
     destination=ROOT/'Portfolio optimization.docx';d.save(destination)
     prov={'source_template_sha256':hashlib.sha256(raw.encode()).hexdigest(),'experiment_manifest_sha256':hashlib.sha256((ART/'run_manifest.json').read_bytes()).hexdigest(),'frozen_spec_sha256':hashlib.sha256((ART/'frozen_spec.json').read_bytes()).hexdigest(),'tables':len(ts),'figures':3,'native_equations':n_eq,'references':len(refs),'word_count_markdown':len(re.findall(r'\b[\w-]+\b',resolved)),'docx_sha256':hashlib.sha256(destination.read_bytes()).hexdigest(),'result_table_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ART/'tables').glob('*.csv'))}}
+    prov['presentation_source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'scripts/build_article_figures.py',PAPER/'references.json',PAPER/'manuscript.md',*sorted((PAPER/'figures').glob('*.png'))]}
+    prov['experiment_status']='Historical outputs retained; updated implementation requires a new raw-data validation and freeze'
     (PAPER/'article_manifest.json').write_text(json.dumps(prov,indent=2)+'\n')
     print(json.dumps({k:v for k,v in prov.items() if k in ['tables','figures','native_equations','references','word_count_markdown']},indent=2))
 

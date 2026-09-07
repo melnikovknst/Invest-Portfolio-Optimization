@@ -1,10 +1,13 @@
 #!/bin/sh
 set -eu
 PROJECT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
-TASK_DIR=$(dirname "$PROJECT_DIR")
-PYTHON_BIN="${PORTFOLIO_PYTHON:-/Users/konstantinmelnikov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3}"
-if [ ! -x "$PYTHON_BIN" ]; then PYTHON_BIN=python3; fi
-"$PYTHON_BIN" -m venv "$TASK_DIR/.venv"
-"$TASK_DIR/.venv/bin/python" -m pip install -r "$PROJECT_DIR/requirements.txt"
-"$TASK_DIR/.venv/bin/python" -m pip freeze > "$PROJECT_DIR/requirements-lock.txt"
-"$TASK_DIR/.venv/bin/python" -c 'import catboost, hmmlearn, sklearn, nbclient; print("Portfolio environment ready")'
+PYTHON_BIN="${PORTFOLIO_PYTHON:-python3}"
+ENVIRONMENT_DIR="$PROJECT_DIR/.venv"
+if [ -L "$ENVIRONMENT_DIR" ]; then
+  echo "Refusing to modify a linked environment; create a repository-local .venv first." >&2
+  exit 1
+fi
+"$PYTHON_BIN" -m venv "$ENVIRONMENT_DIR"
+"$ENVIRONMENT_DIR/bin/python" -m pip install -r "$PROJECT_DIR/requirements.txt"
+# requirements-lock.txt is historical run evidence, not the new machine's lock.
+"$ENVIRONMENT_DIR/bin/python" -c 'import catboost, hmmlearn, sklearn, nbclient; print("Portfolio environment ready")'

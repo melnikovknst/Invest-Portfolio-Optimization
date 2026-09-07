@@ -10,7 +10,7 @@ import nbformat
 parser=argparse.ArgumentParser();parser.add_argument('--backend',choices=['inprocess','jupyter'],default='inprocess');parser.add_argument('--single');args=parser.parse_args()
 names=['baseline.ipynb','pipeline1_regime_aware_gmv.ipynb','pipeline2_fundamental_quality_gmv.ipynb','pipeline3_catboost_risk_gmv.ipynb','results_comparison.ipynb']
 
-def execute_one(name):
+def _execute_one(name):
  os.chdir(ROOT);sys.path.insert(0,str(ROOT));path=ROOT/name;nb=nbformat.read(path,as_version=4);t=time.time()
  for cell in nb.cells:
   if cell.cell_type=='code':cell.outputs=[];cell.execution_count=None
@@ -45,11 +45,39 @@ def execute_one(name):
   finally:
    nbformat.write(nb,path);kc.stop_channels();km.shutdown_kernel()
  errors=[o for c in nb.cells if c.cell_type=='code' for o in c.outputs if o.output_type=='error']
- assert not errors and all(c.execution_count is not None for c in nb.cells if c.cell_type=='code')
+ if errors or not all(c.execution_count is not None for c in nb.cells if c.cell_type=='code'):
+  raise RuntimeError('Notebook contains failed or unexecuted code cells')
  nbformat.validate(nb)
  record={'notebook':name,'status':'completed','backend':args.backend,'code_cells':sum(c.cell_type=='code' for c in nb.cells),'seconds':round(time.time()-t,2)}
  (CACHE/(name+'.execution.json')).write_text(json.dumps(record))
  print('COMPLETED',record,flush=True)
+
+def update_execution_status(status,name,error=None):
+ p=ROOT/'artifacts/run_manifest.json'
+ manifest=json.loads(p.read_text()) if p.exists() else {}
+ # Preserve the previous experiment metadata while invalidating its execution claim.
+ manifest['status']=status
+ manifest['latest_notebook_attempt']={'notebook':name,'status':status,'backend':args.backend}
+ if error:manifest['latest_notebook_attempt']['error']=error
+ p.write_text(json.dumps(manifest,indent=2)+'\n')
+
+def execute_one(name):
+ path=(ROOT/name).resolve()
+ if path.parent!=ROOT or path.suffix!='.ipynb' or not path.is_file():
+  raise ValueError('Notebook must be an existing .ipynb in the repository root')
+ name=path.name
+ record_path=CACHE/(path.name+'.execution.json')
+ record_path.write_text(json.dumps({'notebook':name,'status':'running','backend':args.backend}))
+ update_execution_status('running',name)
+ try:
+  _execute_one(name)
+ except BaseException as exc:
+  error=f'{type(exc).__name__}: {exc}'
+  record_path.write_text(json.dumps({'notebook':name,'status':'failed','backend':args.backend,'error':error}))
+  update_execution_status('failed',name,error)
+  raise
+ # One notebook cannot certify that the entire experiment has been rerun.
+ update_execution_status('notebooks_partial',name)
 
 if args.single:
  execute_one(args.single)
@@ -57,5 +85,7 @@ else:
  for name in names:
   subprocess.run([sys.executable,__file__,'--backend',args.backend,'--single',name],check=True)
  records=[json.loads((CACHE/(name+'.execution.json')).read_text()) for name in names]
- p=ROOT/'artifacts/run_manifest.json';manifest=json.loads(p.read_text());manifest['notebook_execution']=records;manifest['status']='completed';p.write_text(json.dumps(manifest,indent=2)+'\n')
+ p=ROOT/'artifacts/run_manifest.json';manifest=json.loads(p.read_text());manifest['notebook_execution']=records;manifest['status']='completed'
+ manifest['latest_notebook_attempt']={'status':'completed','backend':args.backend,'notebooks':names}
+ p.write_text(json.dumps(manifest,indent=2)+'\n')
  print('ALL NOTEBOOKS EXECUTED SUCCESSFULLY',flush=True)

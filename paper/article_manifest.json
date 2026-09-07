@@ -1,13 +1,13 @@
 {
-  "source_template_sha256": "a6129884e18aafca0a23f89c3468bee6c5bc68d46b8e922f78662e5d06fb6020",
+  "source_template_sha256": "7d6cfb619facaa8611d9c67433d6c7d7b9599d18cdf19b7fe57cfc00497f6408",
   "experiment_manifest_sha256": "614a2407cd09de38a8e0978a476857f4d099f59d4fa37780eb25cabd96e65f56",
   "frozen_spec_sha256": "cccb09278ddd9f430be92fabe23596bb52685ca506e81e2e5ad1b13c9b08f47b",
   "tables": 11,
   "figures": 3,
   "native_equations": 12,
   "references": 18,
-  "word_count_markdown": 7307,
-  "docx_sha256": "3937e20d97cdbb2d219323ce5a3d8799f78a99a5b43e261f1d4f2a047d126e60",
+  "word_count_markdown": 7507,
+  "docx_sha256": "c3c9c7990c3a73fd07f00ca1950ab172d9b6fe24ab3ab96a62691279259f78c9",
   "result_table_sha256": {
     "ablation_plus_fundamentals_test_predictions.csv": "94457a5d6e25e7ea665bfe170679ed284437d224ed83c0e78f6cda0cbef53445",
     "ablation_plus_fundamentals_validation_training.csv": "907cab7d88d8bca523a5b9fc056cdda9ce595bc50825ecbbba01abde8b872864",
@@ -38,5 +38,15 @@
     "test_prediction_metrics.csv": "3c6039db933e17fecdbfb76d77fe8455414fe64146ffe9f5ae7b07a82285e27f",
     "test_regime_conditioned.csv": "d23eea33cc617951846c4d701fb8904dd6e92450b991e50e4f38bedc82685e02",
     "validation_metrics.csv": "f01c7aa129f72938fa00ccb91ac75d124f41561cbfa45267e0f55ccdad4a2f88"
-  }
+  },
+  "presentation_source_sha256": {
+    "scripts/build_article.py": "cc02acaa2e4cdb33103547078a7d13e31f51ab75c7066ca793acdeae84efb224",
+    "scripts/build_article_figures.py": "e902977ac11961535da2a86ddccb1cfab060c80ecd5623d93ef5154833d1c50d",
+    "paper/references.json": "a9ce328fdace48c311d2449be39fc2f0cdc6969b1d72d88b1f654d8bf98ece90",
+    "paper/manuscript.md": "6ec27f4fa578dab521489cd6dfd6b248db2bf26869bb87068b73a65bbd01f633",
+    "paper/figures/quality_coverage.png": "e57c212c2bccf5b863d6531dabd73cfcb480288bd5552ef355069644899a9a41",
+    "paper/figures/risk_calibration.png": "e8418c0f269981398dd1884a2fd52fa254b7dc5fe4e243214080c5ce7c3b6484",
+    "paper/figures/test_performance.png": "bb8aff6726eb6b47bbc24fce024869e2d1eaf538b190baf2e53228214a40556d"
+  },
+  "experiment_status": "Historical outputs retained; updated implementation requires a new raw-data validation and freeze"
 }

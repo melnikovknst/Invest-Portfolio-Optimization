@@ -1,0 +1,339 @@
+{
+  "original_experiment_commit": "93676de158c5df4a6cc0cee3427707869f39dbd5",
+  "scope": "Saved-evidence reconciliation, not a raw-data reproduction",
+  "environment": {
+    "python": "3.12.0",
+    "numpy": "2.5.3",
+    "pandas": "2.3.3"
+  },
+  "checks": [
+    {
+      "name": "result/test/baseline",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/equal_weight",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/pipeline1",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/pipeline2",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/pipeline2_extra_month_lag",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/pipeline3",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/pipeline3_plus_fundamentals",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/test/pipeline3_price_regime",
+      "status": "passed",
+      "detail": {
+        "days": 1289,
+        "rebalances": 62
+      }
+    },
+    {
+      "name": "result/validation/baseline",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/equal_weight",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/pipeline1",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/pipeline2",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/pipeline2_extra_month_lag",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/pipeline3",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/pipeline3_plus_fundamentals",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "result/validation/pipeline3_price_regime",
+      "status": "passed",
+      "detail": {
+        "days": 1007,
+        "rebalances": 48
+      }
+    },
+    {
+      "name": "summary/validation/equal_weight",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/validation/baseline",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/validation/pipeline1",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/validation/pipeline2",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/validation/pipeline3",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/test/equal_weight",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/test/baseline",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/test/pipeline1",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/test/pipeline2",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "summary/test/pipeline3",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "forecasts/validation",
+      "status": "passed",
+      "detail": {
+        "predictions": 2400,
+        "complete_labels": 2400,
+        "annual_fits": 4
+      }
+    },
+    {
+      "name": "forecasts/test",
+      "status": "passed",
+      "detail": {
+        "predictions": 3100,
+        "complete_labels": 3050,
+        "annual_fits": 6
+      }
+    },
+    {
+      "name": "forecast_feature_ablations",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "validation_selection",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "test_annual_metrics.csv",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "test_cost_sensitivity.csv",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "test_regime_conditioned.csv",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "bootstrap_intervals",
+      "status": "passed",
+      "detail": {
+        "comparisons_and_block_lengths": 15,
+        "replications_each": 2000
+      }
+    },
+    {
+      "name": "historical_code_provenance",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "historical_notebook_outputs_preserved_and_current_sources_compile",
+      "status": "passed",
+      "detail": [
+        {
+          "name": "baseline.ipynb",
+          "code_cells": 10,
+          "figures": 3,
+          "html_outputs": 9
+        },
+        {
+          "name": "pipeline1_regime_aware_gmv.ipynb",
+          "code_cells": 9,
+          "figures": 5,
+          "html_outputs": 9
+        },
+        {
+          "name": "pipeline2_fundamental_quality_gmv.ipynb",
+          "code_cells": 10,
+          "figures": 4,
+          "html_outputs": 12
+        },
+        {
+          "name": "pipeline3_catboost_risk_gmv.ipynb",
+          "code_cells": 10,
+          "figures": 6,
+          "html_outputs": 15
+        },
+        {
+          "name": "results_comparison.ipynb",
+          "code_cells": 13,
+          "figures": 3,
+          "html_outputs": 15
+        }
+      ]
+    },
+    {
+      "name": "article_table_and_source_integrity",
+      "status": "passed",
+      "detail": {
+        "tables": 11,
+        "docx_sha256": "c3c9c7990c3a73fd07f00ca1950ab172d9b6fe24ab3ab96a62691279259f78c9"
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "validation",
+      "strategy": "equal_weight",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.5066666666666667,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "validation",
+      "strategy": "baseline",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.4557679322126899,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "validation",
+      "strategy": "pipeline1",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.4542535529719846,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "test",
+      "strategy": "equal_weight",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.5066666666666668,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "raw_data_unavailable",
+      "detail": "No fresh HMM/SEC/CatBoost reproduction was performed; restore the hash-matched price splits, SEC issuer files and OHLCV source for a new validation freeze."
+    }
+  ],
+  "failures": [],
+  "maximum_metric_absolute_error": 4.973799150320701e-14,
+  "result_folders_checked": 16,
+  "current_code_sha256": {
+    "engine.py": "b95f6add6ce2abb15b5e8f524610a4cd6f564920a241fc42ff0afece55d3507b",
+    "features.py": "e3398112f2eca637ab068eb383f09b59aa2a8ab3285dd4e3c2f7c39ff08a7000",
+    "fundamentals.py": "9e5af601253b07b36a2f5e15a8aae3bbeda016b452bf25eab1768e11daff3487",
+    "regimes.py": "e85a794ba954837c94096e8421285970dbfb5a5fbb8df9825bf4727ce8f6ec26",
+    "workflow.py": "7cb88787db5c51f5b752a7a68dcd72e4917e4f741d958334f6be17b340d058e6"
+  },
+  "current_code_matches_original_run": false,
+  "status": "passed_with_disclosed_limitations"
+}

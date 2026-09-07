@@ -1,12 +1,14 @@
 {
-  "docx_sha256": "3937e20d97cdbb2d219323ce5a3d8799f78a99a5b43e261f1d4f2a047d126e60",
+  "review_date": "2026-09-07",
+  "scope": "Revised article layout and saved-evidence review; not a full raw-data reproduction",
+  "docx_sha256": "c3c9c7990c3a73fd07f00ca1950ab172d9b6fe24ab3ab96a62691279259f78c9",
   "numbered_equations": 12,
-  "all_office_math_objects": 27,
-  "tables_verified_against_sources": 11,
+  "all_office_math_objects": 28,
+  "tables_verified_against_markdown": 11,
   "embedded_figures": 3,
   "bibliographic_links": 18,
-  "all_references_cited": true,
-  "experiment_and_result_hashes_verified": true,
+  "original_experiment_commit": "93676de158c5df4a6cc0cee3427707869f39dbd5",
+  "historical_quality_checks": "../artifacts/review/original_article_quality_checks.json",
   "notebook_outputs_verified": [
     {
       "name": "baseline.ipynb",
@@ -40,35 +42,66 @@
     }
   ],
   "unit_and_temporal_tests": {
-    "passed": 8,
-    "skipped": 0,
-    "location": "original checkout",
-    "date": "2026-09-06"
+    "total": 30,
+    "passed": 28,
+    "skipped": 2,
+    "failures": 0,
+    "skip_reason": "Original raw data and feature cache unavailable",
+    "normal_python": "passed",
+    "optimized_python": "passed"
   },
   "visual_review": {
-    "pages": 15,
+    "pages": 16,
     "status": "passed",
-    "all_pages_inspected": true,
-    "page_sha256": {
-      "page-1.png": "800c39242b6ba00a296d10ec06a5ba793cc34722f1675d99307743dfbed2c71e",
-      "page-10.png": "2361a6ac5e0765770bb479f6ac1b488f357395169ed225664215d538141a11b0",
-      "page-11.png": "ddb40bfaccd61ac6c2ec33abb9c201e633436a9e018bd96939072af22d9fb400",
-      "page-12.png": "6225e0c6a1ac15bf16cae540aadd9c1095a65b22c538eaf5816fb47e4adff1f9",
-      "page-13.png": "a5d5302a9a812febcf39291eea5d5f68036afe962a03ad30b393d091a85b6462",
-      "page-14.png": "606cca451da63e3b071de03f816ad649f77bf0deec6a735fcc98bcfecf58da7b",
-      "page-15.png": "d420f7f656e690bd04dbd8d76e4a2b690f146644dc6bc43d7484a7f6aecc6786",
-      "page-2.png": "3182235bfcc70c171f517d110b6b50da98a6501479bb4ca52219e80314f82b3b",
-      "page-3.png": "2982564041395e073b19a6dfda31b813c7c37a4920aeb33703862c84af11960e",
-      "page-4.png": "71448832e1d26ed9feca6f75682e13dd98f2fe0bad084408e5f2bd6fe71db5f1",
-      "page-5.png": "9a07ad802c81a82345dd0a44b1dc10670495ef50ff050cdc06f38ad311db13b3",
-      "page-6.png": "d5791e85de95426d08f345e20df7bf72e6dfd4e6cea79948956667039d8c5d51",
-      "page-7.png": "2edb5447b10fe1f4527f9be69326f4c06596587d632e31dd54c81b539bab3c47",
-      "page-8.png": "e7aba4d32be3ac45692945ba463a9ec592fce82f5b5d671e6ceb90d5acc5a514",
-      "page-9.png": "6ee5d14e6856097a4d7e606195a2b04c5bb9e1399ad2d49141a63fc77bcf955c"
-    }
+    "all_pages_inspected": true
+  },
+  "saved_evidence_checks": {
+    "passed": 37,
+    "failed": 0,
+    "report": "../artifacts/review/saved_artifact_audit.json"
   },
   "primary_metric_reconciliation": {
-    "strategy_split_combinations": 10,
+    "strategy_split_combinations": 16,
     "maximum_absolute_error": 4.973799150320701e-14
-  }
+  },
+  "warnings": [
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "validation",
+      "strategy": "equal_weight",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.5066666666666667,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "validation",
+      "strategy": "baseline",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.4557679322126899,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "validation",
+      "strategy": "pipeline1",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.4542535529719846,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "quality_exposure_mismatch",
+      "split": "test",
+      "strategy": "equal_weight",
+      "diagnostic_average": 0.5,
+      "summary_average": 0.5066666666666668,
+      "resolution": "Original evidence retained; requires source SEC snapshots to reconstruct measured exposure."
+    },
+    {
+      "type": "raw_data_unavailable",
+      "detail": "No fresh HMM/SEC/CatBoost reproduction was performed; restore the hash-matched price splits, SEC issuer files and OHLCV source for a new validation freeze."
+    }
+  ],
+  "current_code_matches_original_run": false,
+  "new_economic_results_claimed": false
 }

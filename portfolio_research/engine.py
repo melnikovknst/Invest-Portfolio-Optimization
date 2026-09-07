@@ -23,9 +23,10 @@ def load_prices(root=ROOT):
   splits[name]=pd.DatetimeIndex(sorted(f.Date.unique()))
   records.append({'split':name,'start':f.Date.min(),'end':f.Date.max(),'days':f.Date.nunique(),'assets':f.Ticker.nunique(),'rows':len(f)})
   frames.append(f);hashes[file]=sha256(p)
- assert splits['train'].max()<splits['validation'].min()<splits['validation'].max()<splits['test'].min()
+ if not splits['train'].max()<splits['validation'].min()<splits['validation'].max()<splits['test'].min():
+  raise ValueError('Price splits must be nonoverlapping and chronological')
  allp=pd.concat(frames)
- assert not allp.duplicated(['Date','Ticker']).any()
+ if allp.duplicated(['Date','Ticker']).any():raise ValueError('Duplicate price keys across splits')
  prices=allp.pivot(index='Date',columns='Ticker',values='Adj Close').sort_index()
  if prices.isna().any().any():raise ValueError('The shared protocol requires the supplied complete panel.')
  returns=prices.pct_change(fill_method=None)
@@ -35,10 +36,16 @@ def file_fingerprint(paths,settings):
  payload={'files':{str(Path(p).relative_to(ROOT)) if Path(p).is_relative_to(ROOT) else Path(p).name:sha256(p) for p in paths},'settings':settings}
  return hashlib.sha256(json.dumps(payload,sort_keys=True,default=str).encode()).hexdigest()
 
+def panel_fingerprint(frame):
+ """Include asset identity/order as well as dates and numerical observations."""
+ h=hashlib.sha256(pd.util.hash_pandas_object(frame,index=True).values.tobytes())
+ h.update(pd.util.hash_pandas_object(frame.columns,index=True).values.tobytes())
+ return h.hexdigest()
+
 def prepare_market(prices,returns,dates,config=BacktestConfig(),regime=RegimeConfig(),cache_dir=None):
  """Cache formation-date covariances, not decisions or selected test results."""
  cache_dir=Path(cache_dir or ROOT/'artifacts/cache/market');cache_dir.mkdir(parents=True,exist_ok=True)
- data_hash=hashlib.sha256(pd.util.hash_pandas_object(returns,index=True).values.tobytes()).hexdigest()
+ data_hash={'returns':panel_fingerprint(returns),'prices':panel_fingerprint(prices)}
  key=file_fingerprint([Path(__file__),ROOT/'portfolio_research/regimes.py'],{'data':data_hash,'config':asdict(config),'regime':asdict(regime)})
  features=build_regime_features(returns,regime);market={}
  for i,date in enumerate(dates):
@@ -63,7 +70,17 @@ def run_backtest(returns,dates,market,config=BacktestConfig(),strategy='baseline
  purchases and sales (initial cash investment has turnover one). Signals use prior
  closes; same-close execution is an idealization recorded in the protocol.
  """
- dates=pd.DatetimeIndex(dates);reb=set(make_rebalance_dates(dates,config.rebalance))
+ if strategy not in LABELS:raise ValueError(f'Unknown strategy: {strategy}')
+ if not np.isfinite([quality_strength,ml_strength,config.cost_rate]).all() or min(quality_strength,ml_strength,config.cost_rate)<0:
+  raise ValueError('Risk penalties and transaction costs must be finite and nonnegative')
+ if strategy=='pipeline3' and predictions is None:raise ValueError('Pipeline 3 requires risk predictions')
+ dates=pd.DatetimeIndex(dates)
+ for label,index in [('evaluation',dates),('returns',returns.index)]:
+  if not isinstance(index,pd.DatetimeIndex) or index.empty or index.hasnans or not index.is_unique or not index.is_monotonic_increasing:
+   raise ValueError(f'{label} dates must be nonempty, unique and chronological')
+ if not dates.isin(returns.index).all() or not returns.columns.is_unique:
+  raise ValueError('Evaluation dates and unique assets must exist in returns')
+ reb=set(make_rebalance_dates(dates,config.rebalance))
  w=pd.Series(dtype=float); daily=[];targets=[];diagnostics=[]
  for date in dates:
   turnover=cost=0.
@@ -72,7 +89,7 @@ def run_backtest(returns,dates,market,config=BacktestConfig(),strategy='baseline
    extra={}; q=pd.Series(.5,index=assets)
    if fundamentals is not None:
     q=fundamentals.loc[fundamentals.date.eq(date)].set_index('ticker').quality_score.reindex(assets)
-    if q.isna().any():raise ValueError('Missing point-in-time quality snapshot')
+    if not np.isfinite(q).all() or not q.between(0,1).all():raise ValueError('Invalid point-in-time quality snapshot')
    if strategy in ('pipeline2','pipeline3'):
     if fundamentals is None:raise ValueError('Quality strategies require fundamentals')
     penalty=quality_strength*float(np.median(np.diag(m['regime'])))*(1-q.to_numpy())
@@ -89,10 +106,10 @@ def run_backtest(returns,dates,market,config=BacktestConfig(),strategy='baseline
    cost=config.cost_rate*turnover
    if cost>=1:raise ValueError('Trading costs exhaust capital')
    w=target.copy();full=target.reindex(returns.columns,fill_value=0);full.name=date;targets.append(full)
-   d={'date':date,**m['diagnostics'],**solver,**extra,'turnover':turnover,'transaction_cost':cost,'eligible_assets':len(assets),'active_positions':int((target>1e-8).sum()),'maximum_weight':target.max(),'hhi':float(target.pow(2).sum()),'effective_assets':float(1/target.pow(2).sum()),'portfolio_quality':float(target.dot(q))}
+   d={'date':date,**m['diagnostics'],**solver,**extra,'turnover':turnover,'transaction_cost':cost,'eligible_assets':len(assets),'active_positions':int((target>1e-8).sum()),'maximum_weight':target.max(),'hhi':float(target.pow(2).sum()),'effective_assets':float(1/target.pow(2).sum()),'portfolio_quality':float(target.dot(q)) if fundamentals is not None else np.nan}
    diagnostics.append(d)
   r=returns.loc[date,w.index]
-  if r.isna().any():raise ValueError(f'Missing held-security returns on {date}')
+  if not np.isfinite(r).all() or (r<-1).any():raise ValueError(f'Invalid held-security returns on {date}')
   gross=float(w.dot(r));net=(1-cost)*(1+gross)-1
   if net<=-1:raise ValueError('Portfolio wealth is non-positive')
   daily.append({'date':date,'gross_return':gross,'net_return':net,'turnover':turnover,'transaction_cost':cost})
@@ -128,13 +145,21 @@ def risk_score(table):
 
 def validate_result(result):
  d=result.diagnostics;w=result.target_weights
- assert (d.history_end<d.index).all()
- if 'hmm_history_end' in d:assert (d.hmm_history_end<d.index).all()
- assert np.allclose(w.sum(axis=1),1,atol=1e-7)
- assert w.min().min()>=-1e-8 and w.max().max()<=result.config.max_weight+1e-7
- assert np.isfinite(result.returns.to_numpy()).all()
- assert np.allclose(result.returns.net_return,(1-result.returns.transaction_cost)*(1+result.returns.gross_return)-1)
- assert np.allclose(result.returns.transaction_cost,result.returns.turnover*result.config.cost_rate)
+ def require(condition,message):
+  if not condition:raise ValueError(message)
+ for name,frame in [('returns',result.returns),('weights',w),('diagnostics',d)]:
+  require(not frame.empty and frame.index.is_unique and frame.index.is_monotonic_increasing,f'Invalid {name} chronology')
+ require(w.index.equals(d.index),'Weight and diagnostic dates differ')
+ require((d.history_end<d.index).all(),'Covariance history is not strictly prior')
+ if 'hmm_history_end' in d:require((d.hmm_history_end<d.index).all(),'HMM history is not strictly prior')
+ require(np.isfinite(w.to_numpy()).all(),'Nonfinite weights')
+ require(np.allclose(w.sum(axis=1),1,rtol=0,atol=1e-7),'Weights do not sum to one')
+ require(w.min().min()>=-1e-8 and w.max().max()<=result.config.max_weight+1e-7,'Weight bounds violated')
+ r=result.returns
+ require(np.isfinite(r.to_numpy()).all(),'Nonfinite daily accounting')
+ require((r.net_return>-1).all() and r.turnover.ge(0).all() and r.transaction_cost.ge(0).all() and r.transaction_cost.lt(1).all(),'Invalid wealth or trading costs')
+ require(np.allclose(r.net_return,(1-r.transaction_cost)*(1+r.gross_return)-1,rtol=0,atol=1e-12),'Net return accounting mismatch')
+ require(np.allclose(r.transaction_cost,r.turnover*result.config.cost_rate,rtol=0,atol=1e-12),'Cost accounting mismatch')
 
 def export_result(result,name,split,root=ROOT):
  folder=root/'artifacts/results'/split/name;folder.mkdir(parents=True,exist_ok=True)
@@ -154,7 +179,12 @@ def core_metrics(x):
  return np.array([x.std(ddof=1)*np.sqrt(252),var_cvar(x,.95)[1],-np.min(wealth/peak-1),x.mean()/x.std(ddof=1)*np.sqrt(252)])
 
 def paired_bootstrap(base,experiment,replications=2000,block=20,seed=20260906):
- assert base.index.equals(experiment.index)
+ if not base.index.equals(experiment.index) or not base.index.is_unique or not base.index.is_monotonic_increasing:
+  raise ValueError('Bootstrap series must have matching unique chronological dates')
+ if not isinstance(block,int) or not 1<=block<=len(base) or not isinstance(replications,int) or replications<1:
+  raise ValueError('Invalid bootstrap block length or replication count')
+ if not np.isfinite(np.column_stack([base,experiment])).all() or len(base)<2:
+  raise ValueError('Bootstrap requires finite paired observations')
  values=np.column_stack([base,experiment]);n=len(values);rng=np.random.default_rng(seed);out=[]
  for _ in range(replications):
   starts=rng.integers(0,n-block+1,size=int(np.ceil(n/block)))

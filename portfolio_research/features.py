@@ -31,6 +31,23 @@ def load_ohlcv(root,prices):
  return panels,{'file_name':source.name,'sha256':sha256(source),'matching_price_cells':int(p.size),'source':'https://www.kaggle.com/datasets/jacksaleeby/s-and-p500-historical-data','data_version':1}
 
 def make_feature_panel(prices,returns,fundamentals,market,regime_features,ohlcv):
+ if not isinstance(returns.index,pd.DatetimeIndex) or returns.index.hasnans or not returns.index.is_unique or not returns.index.is_monotonic_increasing:
+  raise ValueError('Return calendar must be unique and chronological')
+ for name,frame in [('prices',prices),*ohlcv.items()]:
+  if not frame.index.equals(returns.index) or not frame.columns.equals(returns.columns):
+   raise ValueError(f'{name} must align with the return calendar and asset columns')
+ if not returns.columns.is_unique or not market:
+  raise ValueError('Unique assets and nonempty market snapshots are required')
+ if not regime_features.index.is_unique or not regime_features.index.is_monotonic_increasing:
+  raise ValueError('Regime feature index must be unique and chronological')
+ if fundamentals.duplicated(['date','ticker']).any():
+  raise ValueError('Duplicate fundamental snapshots')
+ if 'information_date' not in fundamentals or not (fundamentals.information_date<fundamentals.date).all():
+  raise ValueError('Fundamental information_date must strictly precede formation')
+ if 'latest_used_available' in fundamentals:
+  used=fundamentals.latest_used_available.notna()
+  if not (fundamentals.loc[used,'latest_used_available']<=fundamentals.loc[used,'information_date']).all():
+   raise ValueError('Fundamental filing is unavailable at the information cutoff')
  rows=[];market_return=returns.mean(axis=1)
  for date,m in market.items():
   j=returns.index.get_loc(date);history=returns.iloc[:j];p=prices.iloc[:j];assets=m['assets']
@@ -65,7 +82,9 @@ def make_feature_panel(prices,returns,fundamentals,market,regime_features,ohlcv)
   row['future_downside_variance']=target;row['target_log_risk_ratio']=np.log(target/downside)
   row=row.reset_index(names='ticker');rows.append(row)
  panel=pd.concat(rows,ignore_index=True)
- panel=panel.merge(fundamentals,on=['date','ticker'],how='left',validate='one_to_one')
+ panel=panel.merge(fundamentals,on=['date','ticker'],how='left',validate='one_to_one',indicator=True)
+ if not panel['_merge'].eq('both').all():raise ValueError('Missing fundamental snapshot')
+ panel=panel.drop(columns='_merge')
  assert len(panel)==sum(len(m['assets']) for m in market.values())
  assert (panel.price_information_end<panel.date).all()
  mask=panel.label_end.notna();assert (panel.loc[mask,'label_end']>=panel.loc[mask,'date']).all()
@@ -80,8 +99,13 @@ def forecast_risk(panel,evaluation_dates,depth=4,feature_set='full',iterations=3
  test observations after their label windows have closed; hyperparameters stay fixed.
  """
  from catboost import CatBoostRegressor
+ if panel.duplicated(['date','ticker']).any():raise ValueError('Duplicate forecasting rows')
+ panel=panel.sort_values(['date','ticker'],kind='stable').reset_index(drop=True)
  features=FEATURE_SETS[feature_set]+['ticker'];outputs=[];audits=[];importance=[]
  evaluation_dates=pd.DatetimeIndex(evaluation_dates)
+ if evaluation_dates.empty or evaluation_dates.hasnans or not evaluation_dates.is_unique or not evaluation_dates.is_monotonic_increasing:
+  raise ValueError('Forecast dates must be nonempty, unique and chronological')
+ if not evaluation_dates.isin(panel.date).all():raise ValueError('Missing forecast formation rows')
  for year in sorted(set(evaluation_dates.year)):
   dates=evaluation_dates[evaluation_dates.year==year];cutoff=dates.min()
   train=panel[(panel.date<cutoff)&(panel.label_end<cutoff)&panel.target_log_risk_ratio.notna()].copy()

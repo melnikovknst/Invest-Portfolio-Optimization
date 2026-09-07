@@ -2,6 +2,8 @@
 
 Five executed, English-language research notebooks compare equal weighting, a constrained Ledoit–Wolf GMV baseline, regime-aware covariance, corporate-quality regularization, and CatBoost downside-risk forecasts. The primary comparison holds the investment universe, rolling window, trading schedule, concentration cap and cost model fixed.
 
+**Review status (7 September 2026):** saved outputs belong to experiment commit `93676de`. The current source includes review fixes and intentionally no longer matches that historical freeze. The original outputs are preserved, not relabelled as a new run. See [REVIEW.md](REVIEW.md) for verified calculations, four quality-exposure export discrepancies and the raw-data reproduction boundary. Restore the original inputs and run the experiment driver before running all notebook cells with the updated code.
+
 ## Start here
 
 The full article is [Portfolio optimization.docx](Portfolio%20optimization.docx). A readable [Markdown edition](paper/manuscript.md), source template, bibliography, publication figures and provenance are in [`paper/`](paper/README.md). Its tables are generated from the saved results below.
@@ -33,7 +35,15 @@ python3.12 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-In the delivered local checkout, `.venv` currently links to the environment installed in the original task directory; `.venv/bin/python` works directly from the repository. On another machine, create an environment using the commands above. `scripts/install_environment.sh` and `scripts/sync_to_original.py` are legacy helpers for the earlier restricted workspace and are not required for normal reproduction. The execution script defaults to an actual IPython/Jupyter **in-process kernel**, which also works in environments that prohibit local TCP listeners. It preserves rich tables, PNG figures, stdout, execution counts and errors, using a fresh process for every notebook. `--backend jupyter` uses conventional `nbclient` execution when local kernel connections are available. Both execute the same notebook cells in order.
+Create a repository-local environment using the commands above, or use `scripts/install_environment.sh` (optionally set `PORTFOLIO_PYTHON`). It does not replace the historical dependency lock. The optional copy helper `scripts/sync_to_original.py` requires an explicit destination and refuses a dirty destination checkout; normal reproduction does not need it. The execution script defaults to an actual IPython/Jupyter **in-process kernel**, which also works in environments that prohibit local TCP listeners. It preserves rich tables, PNG figures, stdout, execution counts and errors, using a fresh process for every notebook. `--backend jupyter` uses conventional `nbclient` execution when local kernel connections are available. Failed attempts invalidate previous completion status; a successful single notebook does not certify the full run. Both backends execute the same notebook cells in order.
+
+Saved evidence can be checked without the raw inputs:
+
+```sh
+.venv/bin/python scripts/audit_saved_artifacts.py --bootstrap --output artifacts/review/saved_artifact_audit.json
+```
+
+This checks numerical and document consistency, not the truth of the underlying data or a fresh model fit. Known quality-exposure discrepancies appear as warnings. The audit exits unsuccessfully on any failed check.
 
 `run_experiments.py` creates the expensive inputs, performs validation-only selection, saves `artifacts/frozen_spec.json`, then evaluates the common test and predefined feature/lag ablations. `execute_notebooks.py` independently executes the research narrative and verifies the frozen selections. Changes to economic code or source files invalidate the frozen specification. Run the driver before the notebooks after such changes. Source-generation utility `scripts/build_notebooks.py` is maintained for reproducible authorship; running it clears notebook outputs, which must subsequently be re-executed.
 

@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def md(s):return nbf.v4.new_markdown_cell(s.strip())
 def code(s):return nbf.v4.new_code_cell(s.strip())
 def save(name,cells):
+ cells.insert(0,md('**Generated notebook:** cell outputs have been cleared. Any summary quoted below comes from saved experiment artifacts, not a fresh execution of this source. Restore the original inputs and run the experiment driver before executing the notebook. See README.md for provenance and review limitations.'))
  metrics_file=ROOT/'artifacts/tables/test_metrics.csv'
  if metrics_file.exists():
   import pandas as pd
@@ -12,16 +13,16 @@ def save(name,cells):
   key={'baseline.ipynb':'baseline','pipeline1_regime_aware_gmv.ipynb':'pipeline1','pipeline2_fundamental_quality_gmv.ipynb':'pipeline2','pipeline3_catboost_risk_gmv.ipynb':'pipeline3'}.get(name)
   if key:
    r=results.loc[key]
-   cells[0].source += f"\n\n**Executed test result (2021-01-04–2026-02-20):** CAGR {r['CAGR']:.2%}; annual volatility {r['Annualized Volatility']:.2%}; daily CVaR95 {r['CVaR 95%']:.2%}; maximum drawdown {r['Maximum Drawdown']:.2%}; annual two-sided turnover {r['Annualized Turnover']:.2f}. Interpret these together with the incremental comparisons and uncertainty below."
+   cells[1].source += f"\n\n**Saved test result (2021-01-04–2026-02-20):** CAGR {r['CAGR']:.2%}; annual volatility {r['Annualized Volatility']:.2%}; daily CVaR95 {r['CVaR 95%']:.2%}; maximum drawdown {r['Maximum Drawdown']:.2%}; annual two-sided turnover {r['Annualized Turnover']:.2f}. Interpret these together with the incremental comparisons and uncertainty below."
   else:
-   cells[0].source += "\n\n**Observed result:** Pipeline 1 has the highest Sharpe ratio among the optimized primary strategies. The quality layer increases diversification and reduces turnover but lowers return. CatBoost improves relative risk forecasting while adding little portfolio value; a historical-risk control remains competitive. Additional complexity does not establish general dominance on this sample."
+   cells[1].source += "\n\n**Saved observed result:** Pipeline 1 has the highest Sharpe ratio among the optimized primary strategies. The quality layer increases diversification and reduces turnover but lowers return. CatBoost improves relative risk forecasting while adding little portfolio value; a historical-risk control remains competitive. Additional complexity does not establish general dominance on this sample."
  nb=nbf.v4.new_notebook(cells=cells,metadata={'kernelspec':{'display_name':'Python 3 (Portfolio research)','language':'python','name':'python3'},'language_info':{'name':'python','version':'3.12'}})
  nbf.validate(nb);nbf.write(nb,ROOT/name)
 
 SETUP='''
 from pathlib import Path
-import os, sys, json, copy, warnings
-os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/portfolio-mpl")
+import os, sys, json, copy, warnings, tempfile
+os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "portfolio-mpl"))
 os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 # pandas 2.x / NumPy 2.4 emit this unrelated compatibility deprecation.
@@ -95,12 +96,12 @@ print(solver)
 validation_results = {name: strategy(c, "validation", name) for name in ["equal_weight", "baseline"]}
 validation_table = metric_table(validation_results)
 display(styled(validation_table[METRIC_COLUMNS]))
-for name, result in validation_results.items(): export_result(result, name, "validation")
+for name, result in validation_results.items(): verify_saved_result(result, name, "validation")
 '''),md('### Common test comparison'),code('''
 test_results = {name: strategy(c, "test", name) for name in ["equal_weight", "baseline"]}
 test_table = metric_table(test_results)
 display(styled(test_table[METRIC_COLUMNS]))
-for name, result in test_results.items(): export_result(result, name, "test")
+for name, result in test_results.items(): verify_saved_result(result, name, "test")
 performance_plot(test_results, "baseline_test_performance")
 '''),md(METRIC_NOTE),code('''
 display(styled(test_table.drop(columns=METRIC_COLUMNS + ["Average Portfolio Quality"])))
@@ -138,7 +139,7 @@ validation_results = {name: strategy(c, "validation", name) for name in ["baseli
 test_results = {name: strategy(c, "test", name) for name in ["baseline", "pipeline1"]}
 for split, results in [("validation", validation_results), ("test", test_results)]:
     display(Markdown(f"**{split.title()}**")); display(styled(metric_table(results)[METRIC_COLUMNS]))
-    for name, result in results.items(): export_result(result, name, split)
+    for name, result in results.items(): verify_saved_result(result, name, split)
 test_table = metric_table(test_results)
 '''),md(METRIC_NOTE),code('''
 performance_plot(test_results, "pipeline1_test_performance")

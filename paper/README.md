@@ -2,6 +2,8 @@
 
 The complete English article is `../Portfolio optimization.docx`; `manuscript.md` is its readable Markdown counterpart. The current edition contains an abstract, related literature, data and model definitions, evaluation protocol, results, discussion, conclusion, references and implementation appendices.
 
+The 7 September repository review preserves the original experiment results, marks the disputed equal-weight quality exposure as N/V in Table 6, and clarifies the historical/current code distinction in Appendix B. See `../REVIEW.md`. Original article QA is archived in `../artifacts/review/original_article_quality_checks.json`; `quality_checks.json` describes the revised 16-page document.
+
 ## Files
 
 - `manuscript.template.md`: editable prose, TeX equation counterparts, figure references and table markers.

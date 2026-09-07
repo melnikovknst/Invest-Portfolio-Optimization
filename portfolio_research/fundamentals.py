@@ -45,7 +45,8 @@ def read_sec_facts(data_dir: Path, reference_file: Path):
   for cik,cutoff in identities:
    p=data_dir/'company_raw/companyfacts'/f'CIK{cik:010d}.json'
    if not p.exists(): raise FileNotFoundError(p)
-   obj=json.loads(p.read_text()); assert int(obj['cik'])==cik
+   obj=json.loads(p.read_text())
+   if int(obj['cik'])!=cik:raise ValueError(f'Issuer identity mismatch: {p.name}')
    sources.append({'ticker':ticker,'cik':cik,'entity_name':obj['entityName'],'file':str(p.relative_to(data_dir)), 'sha256':sha256(p),'filing_cutoff_exclusive':cutoff})
    gaap=obj.get('facts',{}).get('us-gaap',{})
    for metric,tags in TAGS.items():
@@ -81,6 +82,8 @@ def _pick(known, metric, end=None, max_age_date=None):
 def company_snapshot(facts, ticker, date, max_age_days=550, information_date=None):
  date=pd.Timestamp(date)
  cutoff=pd.Timestamp(information_date) if information_date is not None else date-pd.Timedelta(days=1)
+ if pd.isna(cutoff) or pd.isna(date) or cutoff>=date:
+  raise ValueError('information_date must strictly precede formation date')
  known=facts[(facts.ticker==ticker)&(facts.available<=cutoff)]
  out={'date':date,'ticker':ticker,'information_date':cutoff}; used=[]
  if known.empty:
@@ -139,11 +142,13 @@ def build_fundamental_panel(facts, dates, tickers, trading_dates):
  blocks=[]
  by_ticker={t:g for t,g in facts.groupby("ticker")}
  calendar=pd.DatetimeIndex(trading_dates)
+ if calendar.hasnans or not calendar.is_unique or not calendar.is_monotonic_increasing:
+  raise ValueError('Trading calendar must be unique and chronological')
  for i,date in enumerate(dates):
   position=calendar.get_loc(date)
   if position==0:raise ValueError("No prior execution close")
   information_date=calendar[position-1]
-  block=pd.DataFrame([company_snapshot(by_ticker[t],t,date,information_date=information_date) for t in tickers]).set_index('ticker')
+  block=pd.DataFrame([company_snapshot(by_ticker.get(t,facts.iloc[:0]),t,date,information_date=information_date) for t in tickers]).set_index('ticker')
   blocks.append(quality_scores(block).reset_index())
   if (i+1)%36==0:print(f'Fundamental snapshots: {i+1}/{len(dates)}',flush=True)
  panel=pd.concat(blocks,ignore_index=True)
