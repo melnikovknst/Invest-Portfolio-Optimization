@@ -8,11 +8,11 @@
     "transaction_cost_bps": 10.0
   },
   "code_hashes": {
-    "engine.py": "8c7901193dfdcaf56d71558a786da0842f5019b4ed51be65d0571ca1c3ddce5b",
-    "features.py": "d4128f0a8675bed7902b9b785a868762e2387bfc205392d4c5c57a21fd2a28dc",
-    "fundamentals.py": "30202aa894e3b852d7dde9e903fc44619612b984cd820baa17ec2ee35cb4ea93",
+    "engine.py": "b95f6add6ce2abb15b5e8f524610a4cd6f564920a241fc42ff0afece55d3507b",
+    "features.py": "e3398112f2eca637ab068eb383f09b59aa2a8ab3285dd4e3c2f7c39ff08a7000",
+    "fundamentals.py": "9e5af601253b07b36a2f5e15a8aae3bbeda016b452bf25eab1768e11daff3487",
     "regimes.py": "e85a794ba954837c94096e8421285970dbfb5a5fbb8df9825bf4727ce8f6ec26",
-    "workflow.py": "1931f254da61da412a7366bdc47cf33de3da304d31b3bc77e10207bd8caf1b93"
+    "workflow.py": "7cb88787db5c51f5b752a7a68dcd72e4917e4f741d958334f6be17b340d058e6"
   },
   "cost_convention": "multiplicative upfront proportional costs; two-sided L1 trades versus fully drifted holdings",
   "depth_candidates": [
@@ -129,14 +129,14 @@
     ]
   },
   "forecast_protocol": "expanding annual refits, label_end strictly before fit date; no test-dependent hyperparameter selection",
-  "fundamental_key": "8d52f3dd7ddb765fe6d3cf5ff1bf3a0d8e428838d415aad9a1d652aec2bc54a7",
+  "fundamental_key": "52a6ac43abd2c1ff6dda306cf019e6f8cedf8e8639cdb294d740066826da12b5",
   "historical_test_exposure": "The original baseline notebook already displayed this test. It is held out for new hyperparameter selection, not a pristine preregistered replication.",
   "input_hashes": {
-    "test.csv": "3a2cdb9e0645d4e7728b3522a71dd947a1c9891e2d775cb0d3a79df6a6c7c805",
-    "train.csv": "c2e4f93749bb8003e5bbd256b09ecdf0f850b450b82f808fb8f2edc64b44eeba",
-    "val.csv": "e4089f99d0a1c434630f702bf7e975d7cac4485d3c8d7c4e6fc01f0c281e9ad1"
+    "test.csv": "9a1561870abc9c269710a4bd277135c42d095e182ca4e40a82ab310513374d83",
+    "train.csv": "dfe079c0ac3411d703192f97ecd6b2678c211e8d4b131fe87dc4ee165fc7c4c7",
+    "val.csv": "b10f2ab9272fee3a88614e08beb67f5735aabe80842891cdfd99df676422aa1d"
   },
-  "market_key": "dfcbf161c58f32b0fb09d7515f07fabc2a01bd837046acd031423527434a6a05",
+  "market_key": "07ef5fa5c253d6df229a833596b11345139b53715afa39079530a5efb2acbdc3",
   "ml": {
     "depth": 4,
     "feature_set": "full",
@@ -152,7 +152,7 @@
   "ohlcv_source": {
     "data_version": 1,
     "file_name": "SP500_Historical_Data.csv",
-    "matching_price_cells": 328650,
+    "matching_price_cells": 2123079,
     "sha256": "82f3ab3ab6821c54b67a555c1f52c60dc4c162923499f2a1403c51d08944722a",
     "source": "https://www.kaggle.com/datasets/jacksaleeby/s-and-p500-historical-data"
   },
@@ -163,7 +163,7 @@
     1.0,
     2.0
   ],
-  "quality_strength": 1.0,
+  "quality_strength": 0.5,
   "regime": {
     "correlation_window": 60,
     "covariance_lookback": 252,

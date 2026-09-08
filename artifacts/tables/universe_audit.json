@@ -1,0 +1,19 @@
+{
+  "eligible_rows": 2123079,
+  "eligible_tickers": 323,
+  "first_date": "2000-01-03",
+  "last_date": "2026-02-20",
+  "sec_snapshot": "reference/company_tickers_exchange_2026-09-07.json",
+  "sec_snapshot_sha256": "ec43db74f82d1739cce6340f36b9695dcb51231fc38edd493215677627bb01cd",
+  "selection_rule": "exactly one finite positive adjusted close on every source date",
+  "source_dates": 6573,
+  "source_file": "/Users/konstantinmelnikov/.cache/kagglehub/datasets/jacksaleeby/s-and-p500-historical-data/versions/1/SP500_Historical_Data.csv",
+  "source_rows": 2703531,
+  "source_sha256": "82f3ab3ab6821c54b67a555c1f52c60dc4c162923499f2a1403c51d08944722a",
+  "source_tickers": 472,
+  "split_rows": {
+    "test.csv": 416347,
+    "train.csv": 1381471,
+    "val.csv": 325261
+  }
+}

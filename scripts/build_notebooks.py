@@ -15,7 +15,7 @@ def save(name,cells):
    r=results.loc[key]
    cells[1].source += f"\n\n**Saved test result (2021-01-04–2026-02-20):** CAGR {r['CAGR']:.2%}; annual volatility {r['Annualized Volatility']:.2%}; daily CVaR95 {r['CVaR 95%']:.2%}; maximum drawdown {r['Maximum Drawdown']:.2%}; annual two-sided turnover {r['Annualized Turnover']:.2f}. Interpret these together with the incremental comparisons and uncertainty below."
   else:
-   cells[1].source += "\n\n**Saved observed result:** Pipeline 1 has the highest Sharpe ratio among the optimized primary strategies. The quality layer increases diversification and reduces turnover but lowers return. CatBoost improves relative risk forecasting while adding little portfolio value; a historical-risk control remains competitive. Additional complexity does not establish general dominance on this sample."
+   cells[1].source += "\n\n**Saved observed result:** Equal weighting earns the highest return and Sharpe ratio but with materially higher volatility. Among the optimized portfolios, the quality and CatBoost layers improve realized return, risk, turnover and breadth relative to the regime-only specification; their marginal effects remain small and should be interpreted with paired uncertainty and explanatory controls."
  nb=nbf.v4.new_notebook(cells=cells,metadata={'kernelspec':{'display_name':'Python 3 (Portfolio research)','language':'python','name':'python3'},'language_info':{'name':'python','version':'3.12'}})
  nbf.validate(nb);nbf.write(nb,ROOT/name)
 
@@ -54,8 +54,8 @@ The original frozen implementation settings are retained across the main compari
 2. Holdings **drift every day** between scheduled rebalances. Two-sided L1 turnover is measured against drifted holdings. Costs reduce capital multiplicatively: `net = (1 - cost) * (1 + gross) - 1`. Initial investment costs are included; terminal liquidation is not imposed.
 3. Sortino uses the baseline definition: annualized mean divided by annualized root-mean-square negative returns, with a zero required return. All return/risk tables use net daily simple returns and 252 sessions/year. VaR/CVaR are daily positive loss magnitudes, not annualized estimates. Maximum drawdown includes initial wealth of 1.
 4. Security caps apply at rebalancing; holdings may drift above the cap between trades. Cash yield, taxes, borrowing and capacity constraints are outside this fully invested research protocol.
-5. The supplied 50 stocks were selected using full-history coverage and alphabetical tie-breaking. Historical delistings and index membership are missing. **Survivorship and universe-selection bias remain.** The data represent a narrow US equity sample, not an emerging market.
-6. The original baseline notebook already exposed test results. This test is held out for the **new** hyperparameter choices; it is not a pristine preregistered replication. Previously reported numbers are superseded by the common corrected engine.
+5. The universe contains **all 323 tickers** in the dated source snapshot with exactly one finite, positive adjusted close on each of its 6,573 dates. No alphabetical truncation is used. Historical delistings and time-varying index membership are still unavailable, so **survivorship and universe-selection bias remain**; the sample is a complete-history US large-cap panel, not a reconstructed constituent universe.
+6. The 2021–2026 period is not used to select the frozen quality or CatBoost hyperparameters. Annual walk-forward refits may use only matured observations from earlier test dates, which is valid real-time updating. Because the original project had previously displayed this period, the study is best read as a transparent exploratory extension rather than a preregistered replication.
 '''
 DATA_AUDIT='''
 c = prepare_context()
@@ -73,7 +73,7 @@ REFERENCES='''
 ## Sources and methodological references
 
 - Original local source notebooks: `price_EDA.ipynb`, `company_analisys.ipynb`; draft manuscript: `Portfolio optimization.docx`.
-- [Kaggle price snapshot, version 1](https://www.kaggle.com/datasets/jacksaleeby/s-and-p500-historical-data): original selection and saved splits are preserved. The provider's `Adj Close` is used as supplied; dividend/corporate-action adjustment quality is not independently certified.
+- [Kaggle price snapshot, version 1](https://www.kaggle.com/datasets/jacksaleeby/s-and-p500-historical-data): every ticker with complete coverage of all 6,573 source dates is retained. The provider's `Adj Close` is used as supplied; dividend/corporate-action adjustment quality is not independently certified.
 - [SEC EDGAR XBRL API documentation](https://www.sec.gov/search-filings/edgar-application-programming-interfaces), [SEC identity reference](https://www.sec.gov/files/company_tickers_exchange.json). Identity reference data are used only to link issuers, not as historical predictive features.
 - [CatBoost training parameters](https://catboost.ai/docs/en/references/training-parameters/common), [regression objectives](https://catboost.ai/docs/en/concepts/loss-functions-regression).
 - Markowitz (1952), Ledoit & Wolf (2004), Hamilton (1989), Asness et al. (2019), Prokhorenkova et al. (2018): conceptual sources cited in the manuscript. The bespoke feature score and optimization penalties here are experimental implementations, not replicas of those papers.
@@ -303,7 +303,7 @@ ml_spec, validation_grid, validation_runs, validation_forecasts = select_ml(c, q
 display(styled(validation_grid[["depth", "ml_strength", "risk_score"] + METRIC_COLUMNS]))
 assert ml_spec == spec["ml"], "Selection changed: repeat the full validation/freeze protocol before test."
 print("Frozen ML specification:", ml_spec)
-'''),md('### Audit purging and assess validation predictions\n\nForecast quality is evaluated against trailing downside risk. Cross-sectional rank correlation is calculated separately each month, then averaged; all 50 assets on a date share the same forecasting cutoff.'),code('''
+'''),md('### Audit purging and assess validation predictions\n\nForecast quality is evaluated against trailing downside risk. Cross-sectional rank correlation is calculated separately each month, then averaged; every asset on a date shares the same forecasting cutoff.'),code('''
 validation_predictions, validation_audit, validation_importance = validation_forecasts[ml_spec["depth"]]
 display(validation_audit)
 assert (pd.to_datetime(validation_audit.last_training_label_end) < pd.to_datetime(validation_audit.fit_date)).all()

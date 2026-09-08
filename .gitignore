@@ -3,6 +3,9 @@
 /data
 # The revised manuscript is versioned; rendering intermediates remain local.
 /paper/rendered/
+/paper/rendered_*/
+/work/
+/.codex_artifact_tool_usage
 /.venv
 /venv
 /.env

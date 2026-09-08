@@ -6,7 +6,7 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--destination',type=Path,required=True)
 TARGET=parser.parse_args().destination.resolve()
 FILES=['.gitignore','README.md','requirements.txt','requirements-lock.txt','baseline.ipynb','pipeline1_regime_aware_gmv.ipynb','pipeline2_fundamental_quality_gmv.ipynb','pipeline3_catboost_risk_gmv.ipynb','results_comparison.ipynb']
-FILES+=['Portfolio optimization.docx','REVIEW.md','requirements-docs.txt']
+FILES+=['Portfolio_optimization.docx','REVIEW.md','requirements-docs.txt']
 DIRS=['portfolio_research','reference','scripts','tests','paper']
 if SOURCE.resolve()==TARGET.resolve():raise SystemExit('Already in the original repository.')
 if not (TARGET/'.git').exists():raise SystemExit('Expected original repository not found.')

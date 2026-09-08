@@ -1,333 +1,289 @@
-# Incremental information in minimum variance portfolio optimization
+# Incremental Information in Minimum-Variance Equity Portfolios
+
+# Последовательное расширение информации в портфелях минимальной дисперсии
 
 ## Abstract
 
-This study examines the incremental value of market regimes, corporate fundamentals and nonlinear risk forecasts in constrained equity portfolio optimization. A Ledoit–Wolf global minimum variance benchmark is extended sequentially with a two-state Gaussian hidden Markov model, a continuous business-quality penalty derived from dated SEC filings, and CatBoost forecasts of asset-level downside risk. All strategies share a fixed universe of 50 US equities, monthly rebalancing, a 15% target-weight cap and proportional transaction costs. New layer strengths are selected on 2017–2020 validation data; the main comparison covers 1,289 trading observations from January 2021 to February 2026. The regime model achieves the highest Sharpe ratio among optimized portfolios, increasing it from 0.733 to 0.774. The quality layer increases effective diversification from 11.59 to 17.12 assets and reduces annual turnover from 4.30 to 3.25, while lowering compound annual growth from 9.68% to 8.04%. CatBoost improves monthly risk-ranking correlation from 0.521 for a historical-risk forecast to 0.580, but reduces portfolio volatility by only 0.016 percentage points relative to the quality model. Explanatory controls show that generic diagonal regularization and historical downside risk can reproduce much of the observed allocation effect. Additional information therefore changes portfolio characteristics without establishing monotonic performance gains. The evidence is conditional on a survivorship-biased universe, idealized close execution and a test period previously exposed in the original baseline analysis.
+**Introduction.** This study asks whether progressively richer information improves a constrained minimum-variance equity portfolio beyond covariance shrinkage. **Methods.** A Ledoit–Wolf global minimum-variance benchmark is extended sequentially with a two-state hidden Markov model, point-in-time corporate-quality scores from SEC filings, and CatBoost forecasts of asset-level downside risk. The universe contains all 323 stocks with a valid adjusted close on every one of 6,573 source dates. Strategies rebalance monthly, are long only and fully invested, impose a 15% target-weight cap, and pay 10 basis points per dollar traded. New parameters are selected on 2017–2020 data and frozen for a January 2021–February 2026 walk-forward evaluation. **Results.** Equal weighting produces the highest compound return and Sharpe ratio but materially higher volatility. Among optimized portfolios, regime conditioning has little effect. Corporate quality increases effective breadth from 21.86 to 32.04 assets, lowers annual turnover from 5.95 to 5.18, reduces maximum drawdown from 20.72% to 19.23%, and raises the Sharpe ratio from 0.687 to 0.716. CatBoost raises monthly risk-ranking correlation relative to trailing downside risk from 0.467 to 0.532, but its allocation effect is small. The full pipeline reaches 11.49% volatility, 1.638% daily CVaR95, and a 0.720 Sharpe ratio. **Discussion.** Quality-based regularization is the most economically meaningful addition, whereas regime and machine-learning gains are modest. **Conclusion.** Paired block-bootstrap intervals do not establish broad dominance, and complete-history selection limits generalization.
 
-Keywords: portfolio optimization; global minimum variance; hidden Markov model; corporate quality; CatBoost; downside risk; conditional value at risk.
+Keywords: portfolio optimization; minimum variance; hidden Markov model; corporate fundamentals; CatBoost; downside risk; transaction costs
 
-## 1 Introduction
+JEL classification: C53; C55; G11; G17
 
-Portfolio selection is a joint allocation problem because the risk of a collection of securities depends on their dependence structure as well as their individual variability. The mean–variance framework formalized this principle and remains a useful starting point for comparing investment rules [1]. Its empirical application, however, requires uncertain inputs. A more elaborate risk model can improve an estimate while producing little practical benefit once constraints, trading costs and the sensitivity of optimized weights are taken into account.
+## Аннотация
 
-This paper studies that distinction through an incremental information experiment. The starting point is a constrained global minimum variance portfolio, abbreviated GMV, estimated using Ledoit–Wolf shrinkage. Expected returns are not forecast. The first extension changes the covariance estimate using latent market states. The second adds a business-quality score constructed from financial statements available before portfolio formation. The third uses a nonlinear learner to forecast asset-level downside risk and adds that forecast to the same allocation problem. Equal weighting provides an additional, non-optimized reference.
+**Введение.** Исследование проверяет, улучшает ли последовательное расширение информационного набора ограниченный портфель минимальной дисперсии по сравнению с базовой моделью, использующей сжатую оценку ковариационной матрицы.
 
-Three questions organize the analysis. Does a regime-dependent covariance estimate improve realized portfolio risk relative to a stabilized unconditional estimate? Does an explicit fundamental-quality layer improve downside outcomes or the stability of allocations? Does broader information processed by CatBoost provide portfolio value beyond those two mechanisms? These questions concern observed incremental performance under a common protocol. They are not treated as hypotheses registered before any exposure to the evaluation sample.
+**Методология.** Базовый глобальный портфель минимальной дисперсии с оценкой Ледуа–Вольфа последовательно дополняется двухрежимной скрытой марковской моделью, фундаментальной оценкой качества компаний на основе доступных на дату данных SEC и прогнозами риска снижения, построенными CatBoost. Выборка включает 323 акции с непрерывным рядом скорректированных цен за 6573 торговых дня; портфели ребалансируются ежемесячно, допускают только длинные позиции, инвестируются, ограничивают вес одной акции 15% и учитывают издержки 10 базисных пунктов на единицу оборота; параметры выбираются на данных 2017–2020 годов и фиксируются для пошаговой проверки с января 2021 по февраль 2026 года.
 
-The contribution is a transparent decomposition of the information-to-allocation chain. Both new layers recover the preceding pipeline at zero penalty strength; the investor constraints and accounting engine remain common. Forecast quality, portfolio performance and implementation characteristics are evaluated separately. Additional neutral-quality and historical-risk controls examine whether improvements reflect company information or simply the regularizing effect of a positive diagonal penalty.
+**Результаты.** Равновзвешенный портфель показывает максимальные сложную доходность и коэффициент Шарпа, но существенно более высокую волатильность, тогда как учет режима рынка почти не меняет показатели оптимизированных портфелей. Фундаментальное качество увеличивает эффективное число активов с 21,86 до 32,04, снижает годовой оборот с 5,95 до 5,18 и максимальную просадку с 20,72 до 19,23%, а коэффициент Шарпа повышает с 0,687 до 0,716; CatBoost увеличивает среднюю месячную ранговую корреляцию прогноза риска с 0,467 до 0,532, но слабо влияет на распределение активов; полный пайплайн достигает волатильности 11,49%, дневного CVaR95 1,638% и коэффициента Шарпа 0,720.
 
-The results are mixed. Regime information produces the strongest observed Sharpe ratio among optimized strategies. Quality regularization broadens allocations and lowers turnover but sacrifices return. CatBoost improves risk ranking relative to a historical forecast, while its incremental portfolio effect is small. This pattern motivates a qualified interpretation: model complexity must be evaluated at the decision level, and predictive improvement alone does not establish investment superiority.
+**Обсуждение.** Регуляризация по качеству компаний дает наиболее заметный эффект, тогда как ценность рыночных режимов и машинного обучения остается умеренной.
 
-## 2 Related literature and research position
+**Заключение.** Парный блочный бутстрэп не подтверждает всеобщее превосходство расширенных моделей, а отбор компаний с полной историей ограничивает переносимость результатов.
 
-Estimation error is a central difficulty in portfolio optimization. Ledoit and Wolf propose a well-conditioned covariance estimator obtained through linear shrinkage toward a scaled identity matrix [2]. Weight restrictions provide another source of stabilization: Jagannathan and Ma show why nonnegative constraints can reduce the risk of estimated portfolios even when the constraints are not justified by the population optimum [3]. These findings motivate a constrained shrinkage GMV benchmark rather than an unstable, unconstrained sample-covariance control.
+Ключевые слова: оптимизация портфеля; минимальная дисперсия; скрытая марковская модель; фундаментальные показатели; CatBoost; риск снижения; торговые издержки
 
-Equal weighting remains a demanding reference. DeMiguel, Garlappi and Uppal compare optimized and naive allocations and document the difficulty of obtaining consistent out-of-sample improvements over 1/N after estimation error is considered [4]. In the present study, equal weighting shares the investment universe and trading assumptions with the optimized rules. It is used to contextualize the economic consequences of variance minimization, rather than to imply that the strategy with the highest realized return necessarily solves the risk objective best.
+## 1. Introduction
 
-Latent-state models provide a way to represent changes in the distribution of economic and financial observations. Hamilton's regime-switching framework is a methodological antecedent [5], while Ang and Bekaert study asset allocation when volatility and correlation vary across regimes [6]. The model implemented here uses two Gaussian states fitted to market-summary features. It is a pragmatic covariance-adaptation mechanism, not a replication of either paper's economic model or dynamic utility optimization.
+Portfolio research often adds forecasts, regimes, and firm characteristics to a classical optimizer, but an added information layer can improve predictions without improving the final portfolio. Estimation error, binding constraints, and turnover may dominate the signal. This distinction is especially important for minimum-variance portfolios, where covariance estimation rather than expected-return forecasting drives allocation [1–5].
 
-Corporate quality is economically distinct from recent price volatility. Profitability, financial safety and growth motivate the Quality Minus Junk literature [7]. Our score uses a narrower set of financial-statement ratios that can be constructed from the local SEC archive. It is an interpretable research measure with four equally weighted domains; it is not a reproduction of the published QMJ factor. Its influence on allocations is separated, where possible, from generic regularization.
+This article evaluates a nested sequence. The baseline uses Ledoit–Wolf covariance shrinkage. Pipeline 1 adds a two-state market-regime model. Pipeline 2 adds a point-in-time corporate-quality penalty. Pipeline 3 adds CatBoost forecasts of forward downside risk. Every layer uses the same universe, rebalance dates, constraints, accounting, and cost rule. Setting the new layer's strength to zero reproduces the preceding strategy exactly.
 
-CatBoost supplies a flexible regression model with native categorical-feature handling [8]. That capability does not by itself prevent time leakage in financial data. The chronology of feature availability and label maturity must still be enforced by the experiment. Similarly, an Amihud-style return-to-dollar-volume ratio supplies a tractable liquidity proxy [9], but including that proxy does not enforce trading capacity or model actual market impact.
+The contribution is methodological and empirical. First, the analysis uses every complete-history stock in the dated source snapshot rather than an arbitrary 50-stock truncation. Second, SEC facts are joined by filing availability, with no use of later restatements at earlier dates. Third, validation and test roles are explicit, while annual model updates during test use only matured past labels. Fourth, the study separates forecast accuracy, allocation effects, costs, and paired uncertainty. This design follows the broader warning that data-rich asset-pricing models require strong controls against selection and data snooping [6–12].
 
-Conditional value at risk is used to describe realized loss tails, drawing on the risk-measure literature [10]. It remains an evaluation criterion rather than the optimizer objective. The separation between development and evaluation follows the motivation of backtesting protocols for machine learning [11], while block resampling reflects serial dependence in portfolio returns [12]. Neither design choice removes the limitations of historical universe selection or prior exposure to the test sample.
+The central result is not that complexity wins. Equal weighting has the highest return and Sharpe ratio, although its volatility is about four percentage points above the optimized portfolios. Within the optimized family, corporate-quality regularization produces the clearest joint improvement in return, drawdown, turnover, and breadth. Regime conditioning and CatBoost add smaller changes whose practical importance is limited.
 
-## 3 Data and information availability
+## 2. Literature and hypotheses
 
-### 3.1 Price universe and chronological split
+Minimum-variance allocation is sensitive to covariance error. Shrinkage and long-only constraints can stabilize the solution and sometimes act as implicit regularization [2,3,5]. The 1/N rule remains a demanding benchmark because estimated optimal weights must overcome both parameter error and implementation costs [4].
 
-The price inputs are the three saved CSV files produced by the original price exploration notebook. They contain 50 US equity tickers selected for long, complete histories, with alphabetical ordering resolving ties. The resulting panel is concentrated in the early part of the ticker alphabet. It is a fixed research universe, not a reconstruction of historical S&P 500 constituents. Historical delistings and firms that failed the full-history criterion are absent, so survivorship and universe-selection bias remain.
+Time variation in covariance motivates regime and dynamic-correlation models [13–16]. A hidden Markov model offers a parsimonious representation of persistent latent states, but better state classification need not translate into large portfolio gains when the covariance estimate is already regularized.
 
-Table 1 reports the unchanged sample split. The combined panel contains 6,573 price dates and 328,650 adjusted-price observations. Returns are calculated after joining the chronological splits, preserving the return from the last preceding close into the first validation or test date. No missing adjusted-price cells, duplicate date–ticker keys, non-finite prices or nonpositive prices occur in the supplied panel. An audit flags 271 stock-day simple returns with absolute magnitude above 20%; these observations are retained rather than winsorized. The audit is not an independent certification of every corporate-action adjustment.
+Corporate quality is related to profitability, balance-sheet strength, cash generation, and accounting reliability [17–20]. This article does not reproduce a traded quality factor. It uses cross-sectional ranks to regularize the optimizer away from relatively weak firms. The effect may reflect both economic information and generic diagonal regularization, so interpretation requires a neutral-score control.
 
-Table 1 Price samples and their roles
+Machine learning can combine nonlinear interactions among prices, fundamentals, liquidity, and reporting variables [6–9,21,22]. Here CatBoost predicts relative downside risk rather than expected return. The relevant hypothesis is therefore narrower: whether a better risk ranking changes a constrained minimum-variance portfolio enough to improve realized risk after costs.
+
+Three hypotheses are evaluated. H1: regime conditioning improves realized risk relative to shrinkage GMV. H2: point-in-time quality regularization improves portfolio stability and risk-adjusted performance relative to the regime model. H3: CatBoost improves forward downside-risk ranking and portfolio outcomes relative to the quality model. All hypotheses are assessed incrementally; no result is interpreted as universal dominance.
+
+## 3. Data
+
+### 3.1 Prices and universe construction
+
+The price source is version 1 of the S&P 500 historical OHLCV dataset. The dated file contains 2,703,531 rows, 472 tickers, and 6,573 distinct trading dates from 3 January 2000 through 20 February 2026. The inclusion rule retains every ticker with exactly one finite, positive adjusted close on every source date. This produces 323 securities and 2,123,079 price observations. The rule is deterministic; no alphabetical cap or performance filter is applied.
+
+Table 1. Chronological sample design / Таблица 1. Хронологическая схема выборки
 
 {{table:splits}}
 
-The adjusted-close field is used as supplied by the original Kaggle snapshot [13]. Additional high, low, close and volume observations come from version 1 of the same locally cached dataset. Every saved adjusted-price cell reconciles with that source within the code's absolute tolerance of 10^-10. This check establishes consistency between input files, not the accuracy of the provider's dividend or corporate-action treatment.
+The complete-history rule ensures a balanced panel but introduces survivorship and universe-selection bias. The data do not reconstruct contemporaneous S&P 500 membership and exclude delisted or shorter-history firms. Consequently, results describe a stable US large-cap panel, not a historical index strategy. Adjusted closes are accepted from the provider; corporate-action adjustments are audited for finite values and extreme returns but are not independently reconstructed.
 
-### 3.2 Corporate identities and financial facts
+Simple asset returns are calculated from consecutive adjusted closes.
 
-SEC Company Facts are keyed by Central Index Key, whereas the price panel is keyed by ticker. A saved SEC identity reference links all 50 tickers to issuer files [14]. Two legal reorganizations require documented predecessor identities: Apache before the APA holding-company structure and the predecessor BlackRock entity [15,16]. Their predecessor filings are excluded after the respective reorganization dates, preventing later subsidiary reports from being treated as parent-company information. No unverified predecessor bridge is imposed for BKR; its earlier observations can remain missing.
+The three splits are joined before return calculation so the first validation and test returns use the immediately preceding close. The panel has no duplicate date–ticker keys, missing adjusted closes, nonpositive prices, or nonfinite prices.
 
-The extraction reads 52 issuer JSON files and retains filing date, accession number, economic period, XBRL concept and USD units. It excludes 43,870 invalid or nonannual-flow candidate rows and finds no ambiguous duplicate-value conflicts under the selected fact keys. After validity filtering and deduplication, 59,670 selected fact rows are available before dated snapshot construction. Only approved equivalent concepts are considered for each accounting measure, with an explicit priority order.
+### 3.2 Point-in-time company facts
 
-Each fact becomes eligible one business day after its filing date. A portfolio snapshot also requires that this availability date be no later than the actual previous exchange close. This second check handles exchange holidays that are not represented by a generic weekday calendar. Later filed amendments or restatements are not available to earlier snapshots. Nevertheless, an aggregate Company Facts archive downloaded today is not guaranteed to preserve every historical filing vintage; the procedure is an as-filed reconstruction subject to archive coverage.
+Corporate data come from SEC Company Facts. A dated SEC identity file maps all 323 tickers to Central Index Keys. APA and BlackRock use documented predecessor lineages with explicit cutoff dates. Other ambiguous predecessor links are not inferred.
 
-Annual income and cash-flow quantities must span 330–400 days and originate in 10-K or 10-K/A filings. Quarterly and year-to-date flows are excluded. Annual flow ratios use assets or revenue at the matching fiscal-year end, while balance-sheet ratios use a common most recent eligible balance date. Most current ratio inputs are rejected when their economic period is more than 550 days old; revenue growth separately retrieves the preceding comparable annual revenue as a historical comparator. Nonpositive denominators yield missing values. No backward filling is performed.
+Each fact retains filing date, accession number, fiscal period, form, start and end dates, concept, and unit. A one-business-day embargo is added after the filing date, and a fact is eligible only when its resulting availability date is no later than the preceding trading close. Later amendments and restatements cannot alter earlier portfolios. Annual flow facts must come from 10-K or 10-K/A filings and span 330–400 days. Balance-sheet ratios use a common eligible balance date, nonpositive denominators are missing, and stale current inputs are not carried indefinitely.
 
-### 3.3 Fundamental coverage and quality domains
+The monthly panel contains 62,662 company-month observations. Mean availability across the nine quality ratios is 76.8%; the interquartile range is 66.7%–88.9%. Coverage rises from 48.5% in 2010 to about 84.2% in 2026. Missing ratios receive a neutral cross-sectional rank of 0.5, preserving the investable universe without treating absence as high quality.
 
-Nine ratios are grouped into four domains, as shown in Table 2. Available values are transformed into cross-sectional percentile ranks on each formation date, using average ranks for ties and reversing the direction of adverse indicators. Missing evidence receives a neutral rank of 0.5. Ratios are equally weighted within each domain, and domains are equally weighted in the final score. This preserves all 50 securities and prevents missingness from automatically becoming a positive quality signal.
+Figure 1. Point-in-time quality-ratio coverage by year / Рисунок 1. Покрытие показателей качества по годам
 
-Table 2 Business quality indicators
+![Annual mean fraction of available quality ratios](figures/quality_coverage.png)
 
-{{table:quality}}
+### 3.3 Information set
 
-Average ratio coverage rises from 57.72% in 2010 to 83.44% in 2021, then is approximately 81.8–83.2% over the remaining test years. These percentages describe the fraction of available ratio entries across monthly company snapshots, not the fraction of companies with complete reports. Industrial-company ratios are less suitable or less available for some financial firms. Because ranks are not sector-neutral, quality exposure can partly reflect industry composition.
+The CatBoost panel contains 46 numeric variables and ticker as one categorical input. Price and regime variables include momentum, reversal, volatility, drawdown, beta, residual volatility, covariance diagonals, market correlation, and stress probability. Corporate variables include nine ratios, revenue growth, assets, quality score, and coverage. Trading variables include dollar volume, relative volume, an Amihud-style illiquidity proxy [22], and intraday range. Reporting-process variables include filing age and lag, amendment frequency, known-filing count, and missingness.
 
-![Figure 1 Fundamental ratio coverage over time](figures/quality_coverage.png)
-
-Figure 1. Annual means of the fraction of available ratios across monthly company snapshots. Missing ratios remain neutral in the score; a complete identity mapping does not imply complete accounting coverage.
-
-## 4 Portfolio models
-
-### 4.1 Common objective and benchmark
-
-Let r_i,t denote the daily simple return of security i, and let w_t denote a vector of target weights. The common feasible set imposes full investment, long-only holdings and a 15% weight cap at rebalance. Between trades, weights may drift above that cap. The constrained problem is
-
-<!-- equation:objective -->
-$$
-w_t^* = \arg\min_{w\in\mathcal W} w^\top\Sigma_t w,\qquad \mathcal W=\{w:\mathbf 1^\top w=1,\ 0\leq w_i\leq0.15\}.
-$$
-
-The equal-weight reference sets each target to 1/50. The main benchmark uses 252 strictly preceding return observations to estimate a centered Ledoit–Wolf covariance matrix. Specifically, the scikit-learn implementation shrinks the empirical covariance toward its average variance times the identity [2,17]:
-
-<!-- equation:shrinkage -->
-$$
-\Sigma_t^{LW}=(1-\delta_t)S_t+\delta_t\mu_t I,\qquad \mu_t=\operatorname{tr}(S_t)/N.
-$$
-
-The shrinkage intensity is estimated from the available window. This scaled-identity estimator should not be confused with the constant-correlation target associated with other Ledoit–Wolf formulations. A common scalar normalization improves numerical optimization without changing the minimizer. The solver is SLSQP with analytic gradients, a 10^-12 tolerance and a maximum of 1,000 iterations. The completed run records no solver failures; the shared engine stops if a valid optimized solution is unavailable.
-
-### 4.2 Pipeline 1 and market regimes
-
-A two-state Gaussian hidden Markov model is refitted at each monthly formation date. Its inputs are the equal-weight market return, 20-session annualized market volatility, 63-session drawdown and 60-session average pairwise correlation. Standardization is fitted only on the preceding HMM window. The model uses at most 2,520 preceding feature observations and requires at least 756. Five initializations are evaluated, retaining the highest-likelihood converged fit under the library's convergence criterion; each permits up to 500 iterations. States are labelled calm and stress according to their weighted mean volatility, not the sign of market returns.
-
-Historical state responsibilities are smoothed within the window available at that formation date. This is permissible for estimating the current covariance, because no subsequent trading observations enter the fit. It must not be interpreted as the state classification that would have been known at each earlier historical date. At the last observation, the state posterior provides the current probability vector. The transition matrix projects this vector forward and the 21 successive one-step forecasts are averaged:
-
-<!-- equation:probability -->
-$$
-\bar p_t=\frac{1}{21}\sum_{h=1}^{21}p_{t-1}A_t^h.
-$$
-
-State-weighted covariance matrices are estimated from the same 252-session return window used by the baseline. The weighted covariance denominator is the sum of state weights minus the sum of their squares divided by their sum. Effective sample size and the pooling coefficient are
-
-<!-- equation:effective -->
-$$
-n_{k,t}^{eff}=\frac{(\sum_s\gamma_{s,k})^2}{\sum_s\gamma_{s,k}^2},\qquad a_{k,t}=\frac{n_{k,t}^{eff}}{n_{k,t}^{eff}+N}.
-$$
-
-Pooling protects states with limited effective history. The forecast risk matrix combines each state estimate with the global shrinkage matrix and then averages the results using projected probabilities:
-
-<!-- equation:regime -->
-$$
-\Sigma_t^R=\sum_{k=1}^{2}\bar p_{k,t}\left[a_{k,t}S_{k,t}+(1-a_{k,t})\Sigma_t^{LW}\right].
-$$
-
-The main specification excludes the between-state mean term and therefore is a within-state covariance mixture rather than the complete covariance of a return-distribution mixture. Symmetrization and a small scale-relative eigenvalue floor maintain positive definiteness. The retained settings come from the existing Pipeline 1 specification; alternative HMM state counts, lookbacks and feature sets are not newly searched on the final test.
-
-### 4.3 Pipeline 2 and business quality
-
-The quality score q_i,t lies between zero and one. Let R_i,j,t be the favorable-direction rank of ratio j, with 0.5 assigned to missing values, and let D_d denote the indicators of domain d. The four-domain score is
-
-<!-- equation:quality -->
-$$
-q_{i,t}=\frac{1}{4}\sum_{d=1}^{4}\frac{1}{|D_d|}\sum_{j\in D_d}R_{i,j,t}.
-$$
-
-Pipeline 2 replaces the regime risk matrix with a regularized matrix:
-
-<!-- equation:qualitymatrix -->
-$$
-\Sigma_t^Q=\Sigma_t^R+\lambda\,m_t\operatorname{diag}(1-q_t),\qquad m_t=\operatorname{median}(\operatorname{diag}(\Sigma_t^R)).
-$$
-
-The added quadratic term penalizes concentrated positions more strongly when the issuer has lower observed quality. It does not estimate an expected return or a calibrated default probability. The multiplier m_t makes the penalty scale with the current daily covariance level, while the nonnegative strength lambda controls its influence. Setting lambda to zero exactly recovers Pipeline 1.
-
-Even a constant quality score adds a positive diagonal penalty, so increased diversification alone cannot establish that company rankings add information. A neutral-score control is therefore reported as an explanatory diagnostic. The experiment tests the chosen score and penalty together; it does not identify an industry-independent causal effect of business quality.
-
-### 4.4 Pipeline 3 and downside risk forecasts
-
-CatBoost predicts how an individual stock's next 21-session downside semivariance differs from its trailing 63-session value. Downside semivariance is the mean squared negative simple return, using all sessions in the relevant window. Values are floored at 10^-10 before taking logarithms. Denote the trailing value by D_i,t^- and the next-window value by D_i,t^+. The regression target and transformed forecast are
-
-<!-- equation:target -->
-$$
-y_{i,t}=\log(D_{i,t}^{+}/D_{i,t}^{-}),\qquad \widehat D_{i,t}=D_{i,t}^{-}\exp(\operatorname{clip}(f_t(x_{i,t}),-3,3)).
-$$
-
-The predictor is fitted to squared error in the log-risk-ratio target. Its exponentiated output is a conditional log-risk score scaled by recent risk. It is not an unbiased forecast of conditional mean semivariance; the distinction matters for the calibration results. The bounds on the predicted log ratio are fixed before model selection.
-
-The full model contains 46 numeric inputs and ticker as a categorical input, for 47 features in total. Table 3 summarizes the blocks. Market-return proxies are calculated from the supplied 50-stock panel rather than from an independent market index. Numeric missing values are passed to CatBoost; no normalization using the full future panel is applied.
-
-Table 3 CatBoost information blocks
+Table 2. CatBoost information blocks / Таблица 2. Информационные блоки CatBoost
 
 {{table:features}}
 
-Pipeline 3 adds a nonnegative diagonal risk forecast to the quality-adjusted matrix:
+## 4. Methods
 
-<!-- equation:mlmatrix -->
+### 4.1 Common portfolio protocol
+
+All strategies rebalance on the final observed trading date of each month. They are long only, fully invested, and capped at 15% per target weight. The baseline minimizes portfolio variance over the feasible set:
+
+<!-- equation: objective -->
 $$
-\Sigma_t^C=\Sigma_t^Q+\eta\operatorname{diag}(\widehat D_t).
-$$
-
-At eta equal to zero it exactly recovers Pipeline 2. Off-diagonal covariance entries come from the regime model; diagonal penalties also change the implied correlations. The forecast modifies asset-specific risk penalties; it does not learn the covariance matrix, maximize a return forecast or generate unconstrained portfolio weights.
-
-## 5 Experimental protocol and evaluation
-
-### 5.1 Validation selection and annual learning
-
-Monthly learning snapshots start in January 2010. The complete panel contains 9,700 company-month rows over 194 formation dates, including incomplete future labels at the end of the dataset. For each evaluation year, CatBoost is fitted once at the first formation date using an expanding history. A training observation is admitted only if both its formation date and the end of its 21-session target window precede the fit date. Targets crossing the cutoff are purged. Rows are ordered by date and ticker, and has_time is enabled to preserve input-order handling [18]. This configuration is not described as a guarantee of a particular boosting_type default.
-
-The first validation model uses available matured observations from 2010–2016. Later validation models may learn from completed earlier validation history. The first test model can use completed train and validation observations; annual refits during test may learn from already matured earlier test observations. This is an adaptive, fixed-algorithm evaluation, not a model trained once and left unchanged for six years. Future labels and test-dependent hyperparameter selection are excluded.
-
-Five quality strengths are compared: 0, 0.25, 0.5, 1 and 2. The ML search compares depths 4 and 6 with strengths 0, 0.25, 0.5 and 1, counting the duplicate no-ML control once. All CatBoost models use 300 trees, learning rate 0.04, L2 leaf regularization 10, seed 20260906 and two threads. Early stopping on the test period is not used. Quality selection precedes ML selection, and the selected quality strength is held fixed during the ML search.
-
-Candidates are ranked using a weighted validation score: annual volatility 30%, daily CVaR95 25%, maximum drawdown 20%, annual turnover 10%, average HHI 10% and Sharpe 5%. Lower values are favored except for Sharpe. Each criterion uses average ranks among candidates, and ties favor smaller intervention and then shallower trees. The selected values are lambda = 1, eta = 0.25 and depth = 4. This score makes diversification and trading stability explicit objectives; selecting a model does not imply that it minimizes validation CVaR alone.
-
-### 5.2 Portfolio accounting and implementation assumptions
-
-All portfolios rebalance on the first observed session of each month and start each reported evaluation split from cash. A target formed from preceding closes is charged the initial investment cost and earns the formation session's return. Signals therefore precede the return they earn, but execution at the same previous close used to form the signal is idealized. A later-open or next-close implementation is a separate experiment, not an assumption already tested here.
-
-Let w_t^- denote the pre-trade weights and w_t^* the selected target. Two-sided turnover is the sum of absolute differences between them. It equals one on initial investment and counts both purchases and sales on later rebalances. At the base cost rate c = 0.001, net returns and subsequent drifting weights satisfy
-
-<!-- equation:accounting -->
-$$
-\tau_t=\sum_i|w_{i,t}^*-w_{i,t}^-|,\qquad r_{p,t}^{net}=(1-c\tau_t)(1+r_{p,t}^{gross})-1.
+w_t^* = arg min w' Sigma_t w, subject to sum(w)=1 and 0<=w_i<=0.15.
 $$
 
-<!-- equation:drift -->
+The covariance window contains 252 strictly preceding sessions. Ledoit–Wolf shrinkage combines the sample covariance with a scaled identity target [2,5]:
+
+<!-- equation: shrinkage -->
 $$
-r_{p,t}^{gross}=\sum_iw_{i,t}r_{i,t},\qquad w_{i,t+1}^{-}=\frac{w_{i,t}(1+r_{i,t})}{1+r_{p,t}^{gross}}.
-$$
-
-Here w_i,t is the target on a rebalance date and the carried pre-trade holding otherwise; turnover is zero on non-rebalance dates. Commissions reduce portfolio capital multiplicatively. The rule is a proportional-cost research convention, not a full cash-and-lot execution simulator. The sum of daily cost fractions is reported as a diagnostic and should not be read as the exact compounded loss of terminal wealth. Terminal liquidation, market impact, capacity limits, taxes, financing and cash yield are not modeled. No explicit turnover or liquidity constraint is imposed.
-
-The common engine corrects two inconsistencies in the earlier notebooks: fixed target weights had been used for daily returns despite drift being used for turnover, and the Pipeline 1 Sortino denominator differed from the baseline's. Initial-wealth drawdown and cost compounding are also standardized. All tables in this article use the corrected engine; earlier manuscript figures are superseded. The inherited window, cap and schedule are held fixed rather than reoptimized after that correction.
-
-### 5.3 Performance measures and uncertainty
-
-Net simple returns are compounded into wealth with initial capital one. CAGR uses 252 sessions per year. Annual volatility is the sample standard deviation of daily returns multiplied by the square root of 252. Sharpe is annualized arithmetic mean divided by annual volatility, with the risk-free rate fixed at zero. Sortino instead uses annualized root-mean-square negative returns relative to a zero target. Thus the reported ratios are not excess-return measures relative to an observed Treasury bill series.
-
-Maximum drawdown is the largest proportional decline from the running wealth peak, including initial capital. VaR at confidence alpha is the empirical alpha quantile of daily loss, where loss is the negative net return. The reported empirical CVaR is the mean of observations at or above that threshold:
-
-<!-- equation:cvar -->
-$$
-L_t=-r_{p,t}^{net},\qquad \widehat{CVaR}_{\alpha}=\frac{\sum_tL_t\mathbf1\{L_t\geq\widehat{VaR}_{\alpha}\}}{\sum_t\mathbf1\{L_t\geq\widehat{VaR}_{\alpha}\}}.
+Sigma_LW = (1-delta)S + delta mu I.
 $$
 
-VaR and CVaR are daily loss magnitudes, not annualized statistics. Annual turnover is total two-sided traded fraction divided by the evaluation length in trading years. HHI is the sum of squared target weights; effective breadth is its reciprocal, averaged across rebalances. Active positions, maximum target weight, target-to-target L1 changes, drawdown duration and solver diagnostics supplement these measures.
+Daily holdings drift with realized returns. Turnover is the two-sided L1 distance between a new target and pre-trade drifted holdings. Initial entry is charged; terminal liquidation is not.
 
-Forecast diagnostics use complete 21-session labels: 3,050 stock-month observations across 61 test formation dates. The final February 2026 formation lacks a complete target and is excluded from forecast diagnostics, while all 1,289 test sessions and 62 rebalances remain in portfolio performance. Log-risk RMSE compares predicted and realized log semivariance. Rank IC is Spearman correlation across stocks within each month, averaged across months.
+<!-- equation: accounting -->
+$$
+tau_t = sum_i |w_i,t^* - w_i,t^-|; r_net = (1-c tau_t)(1+r_gross)-1.
+$$
 
-Incremental performance uncertainty is assessed with 2,000 paired moving-block bootstrap draws, using identical resampled dates for both strategies. Contiguous blocks of 10, 20 and 60 sessions are sampled with replacement and concatenated to the original sample length. Percentile 95% intervals describe conditional variation for the selected return paths. They do not account for the full model search, multiple comparisons, parameter re-estimation within each draw or universe-selection bias. Drawdown intervals are especially sensitive to synthetic block ordering [12].
+The drift identity is:
 
-## 6 Empirical results
+<!-- equation: drift -->
+$$
+r_gross = sum_i w_i,t r_i,t; w_i,t+1^- = w_i,t(1+r_i,t)/(1+r_gross).
+$$
 
-### 6.1 Validation development results
+The base cost is 10 basis points per dollar traded. Sensitivity results use 0, 25, and 50 basis points with identical gross returns and target paths.
 
-Table 4 reports the development-sample performance of the selected configurations. Pipeline 1 has the strongest Sharpe among optimized models but slightly higher volatility than the baseline. The quality layer lowers volatility and turnover relative to Pipeline 1 while worsening CVaR95 and maximum drawdown on validation. The weighted selection score nevertheless chooses a positive quality strength because it also rewards diversification and trading stability. These observations are selection evidence and should not be counted as an independent confirmation of superiority.
+### 4.2 Regime-aware covariance
 
-Table 4 Validation performance after costs from 2017 to 2020
+Pipeline 1 refits a two-state Gaussian hidden Markov model at each formation date [13,14]. Inputs are the equal-weight market return, 20-session annualized volatility, 63-session drawdown, and 60-session mean pairwise correlation. Standardization uses only the preceding estimation window. The model uses up to 2,520 observations, requires at least 756, evaluates five seeded initializations, and labels states calm or stress by their volatility means.
+
+The filtered state probability is propagated for 21 trading days and averaged:
+
+<!-- equation: probability -->
+$$
+p_bar_t = (1/21) sum_h p_t-1 A_t^h.
+$$
+
+State covariances use posterior responsibilities and effective-sample pooling toward the Ledoit–Wolf estimate:
+
+<!-- equation: effective -->
+$$
+n_eff = (sum_s gamma_s,k)^2 / sum_s gamma_s,k^2; a_k = n_eff/(n_eff+N).
+$$
+
+<!-- equation: regime -->
+$$
+Sigma_R = sum_k p_bar_k [a_k S_k + (1-a_k) Sigma_LW].
+$$
+
+### 4.3 Corporate-quality regularization
+
+Nine ratios form four equally weighted domains. Profitability uses return on assets and operating margin. Balance-sheet strength uses equity/assets, cash/assets, and the inverse rank of liabilities/assets. Cash generation uses CFO/assets, the inverse rank of accruals/assets, and free cash flow/assets. Liquidity uses the current ratio. This construction is related to, but is not a replication of, published quality factors [17–20].
+
+Table 3. Corporate-quality definition / Таблица 3. Определение фундаментального качества компаний
+
+{{table:quality}}
+
+Each ratio is ranked cross-sectionally at formation. Within-domain and across-domain averages define q_i,t:
+
+<!-- equation: quality -->
+$$
+q_i,t = (1/4) sum_d [(1/|D_d|) sum_j in D_d R_i,j,t].
+$$
+
+Pipeline 2 adds a positive semidefinite diagonal penalty scaled to the median regime variance:
+
+<!-- equation: qualitymatrix -->
+$$
+Sigma_Q = Sigma_R + lambda m_t diag(1-q_t).
+$$
+
+Validation compares lambda in {0, 0.25, 0.5, 1, 2}; lambda=0.5 is selected.
+
+### 4.4 CatBoost downside-risk forecasts
+
+For each asset-month, the target is the log ratio of next-21-session downside semivariance to trailing-63-session downside semivariance. Only labels ending before a refit date enter training. The predicted log ratio is clipped to [-3,3], exponentiated, and multiplied by trailing downside risk:
+
+<!-- equation: target -->
+$$
+y_i,t = log(D_i,t^+ / D_i,t^-); D_hat_i,t = D_i,t^- exp(clip(f(x_i,t),-3,3)).
+$$
+
+Pipeline 3 adds the predicted risk as another diagonal penalty:
+
+<!-- equation: mlmatrix -->
+$$
+Sigma_C = Sigma_Q + eta diag(D_hat_t).
+$$
+
+Models refit annually on an expanding window beginning with 2010–2016 observations. The search compares depths 4 and 6 and eta in {0, 0.25, 0.5, 1}; 300 trees, learning rate 0.04, L2 regularization 10, fixed seed 20260906, two threads, and chronological handling are held fixed. Validation selects depth 4 and eta=0.25. Annual refits during 2021–2026 may use only matured earlier observations; they do not use contemporaneous or future labels.
+
+### 4.5 Evaluation and uncertainty
+
+The primary metrics are CAGR, annualized volatility, Sharpe and Sortino ratios, maximum drawdown, daily VaR/CVaR, annualized two-sided turnover, HHI, and effective assets. CVaR is calculated as the mean loss beyond the empirical VaR threshold [23]:
+
+<!-- equation: cvar -->
+$$
+CVaR_alpha = sum_t L_t 1{L_t>=VaR_alpha} / sum_t 1{L_t>=VaR_alpha}.
+$$
+
+All performance metrics use net daily returns and 252 sessions per year. A paired moving-block bootstrap resamples aligned daily return differences with block lengths 10, 20, and 60 and 2,000 seeded replications [24]. These intervals condition on the chosen model family and do not correct for the full research search path [10–12].
+
+Table 4. Reproducible implementation settings / Таблица 4. Воспроизводимые параметры реализации
+
+{{table:settings}}
+
+## 5. Results
+
+### 5.1 Validation
+
+Validation results are development evidence, not an independent performance claim. The weighted selection score places 30% on volatility, 25% on CVaR95, 20% on drawdown, 10% each on turnover and HHI, and 5% on Sharpe with reverse ranking. It selects lambda=0.5, CatBoost depth 4, and eta=0.25.
+
+Table 5. Validation performance, net of 10 bps costs / Таблица 5. Результаты на валидационной выборке с учетом издержек 10 б.п.
 
 {{table:validation}}
 
-### 6.2 Main test comparison
+### 5.2 Common test performance
 
-Table 5 presents the common test results. Equal weighting produces the largest CAGR, 12.11%, accompanied by 16.85% annual volatility and 20.72% maximum drawdown. The baseline GMV portfolio reduces volatility to 13.15% and drawdown to 18.63%, with CAGR of 9.16%. This illustrates the distinction between a realized return ranking and the purpose of a minimum-variance allocation.
+Table 6 reports the main 1,289-session test. Equal weighting earns 14.08% CAGR and a 0.906 Sharpe ratio, versus 7.45% and 0.678 for baseline GMV. This return advantage is paired with 15.95% volatility versus 11.59% for GMV. Naive diversification therefore remains the return benchmark, while optimization materially reduces realized volatility.
 
-Table 5 Test return and risk after costs from 2021 to February 2026
+Table 6. Test performance, January 2021–February 2026 / Таблица 6. Результаты на тестовой выборке, январь 2021 – февраль 2026 года
 
 {{table:test}}
 
-Pipeline 1 increases CAGR to 9.68% and Sharpe to 0.774, compared with 0.733 for the baseline. Volatility declines by 0.104 percentage points, CVaR95 by 0.017 percentage points and maximum drawdown by 0.396 percentage points. These are modest changes in risk magnitudes. Figure 2 shows the compounded paths and drawdowns, including the close proximity of the two newest pipelines.
+Pipeline 1 changes the optimized results only slightly: volatility falls by 0.009 percentage points and CVaR95 by 0.005 points, while maximum drawdown increases by 0.11 points. Pipeline 2 is more consequential. Relative to Pipeline 1, CAGR rises from 7.55% to 7.88%, Sharpe from 0.687 to 0.716, maximum drawdown falls from 20.72% to 19.23%, turnover falls from 5.95 to 5.18, and effective assets rise from 21.86 to 32.04. Pipeline 3 makes a smaller additional change, reaching 7.91% CAGR, 11.49% volatility, 1.638% CVaR95, 18.91% maximum drawdown, and 34.11 effective assets.
 
-![Figure 2 Test wealth and drawdown paths](figures/test_performance.png)
-
-Figure 2. Net wealth and drawdown use the same 10 bps cost convention and daily drifting holdings. Pipeline 2 and Pipeline 3 largely overlap. The 2026 segment ends on February 20.
-
-Pipeline 2 changes allocation structure more strongly than aggregate risk. Its effective breadth rises to 17.12 from 11.59, and annual turnover falls to 3.25 from 4.30. Average portfolio quality also increases. However, CAGR falls to 8.04% and Sharpe to 0.656. Volatility is slightly higher than Pipeline 1, and CVaR99 rises from 2.835% to 2.881%. Smaller CVaR95 and drawdown therefore do not establish general downside dominance.
-
-Table 6 Test allocation and implementation characteristics
+Table 7. Implementation and portfolio structure / Таблица 7. Реализация и структура портфелей
 
 {{table:implementation}}
 
-N/V denotes an exposure not verified against the retained rebalance diagnostics. The equal-weight summary reports 0.507, but its detailed export contains a neutral 0.500 placeholder; the disputed value is withheld here. The other test quality exposures reconcile with their detailed exports. This reporting discrepancy does not change portfolio weights, returns or risk metrics.
+Figure 2. Net wealth and drawdowns in the test period / Рисунок 2. Стоимость портфелей и просадки на тестовом периоде
 
-Pipeline 3 retains approximately the same CAGR as Pipeline 2 while lowering annual volatility from 13.100% to 13.084%. CVaR95 decreases from 1.8354% to 1.8330%, and maximum drawdown from 17.8826% to 17.7791%. Effective breadth increases to 17.63 and turnover decreases to 3.18. The observed incremental portfolio effect is economically small even where its direction is favorable.
+![Net performance and drawdowns for all strategies](figures/test_performance.png)
 
-### 6.3 Forecast accuracy and information ablations
+### 5.3 Paired uncertainty
 
-CatBoost improves log-risk RMSE relative to the trailing downside-risk forecast, from 0.952 to 0.884, and mean monthly rank IC from 0.521 to 0.580. This establishes useful relative forecasting information on the evaluated dates, subject to the common sample limitations. It does not establish superiority over every simpler learned model or guarantee an improvement in optimized wealth.
+The 20-session block intervals include zero for all Pipeline 1 versus baseline comparisons and for most Pipeline 2 versus Pipeline 1 comparisons. Pipeline 3's volatility reduction relative to Pipeline 2 is small but its interval excludes zero; its CVaR, drawdown, and Sharpe intervals do not. The evidence supports a precisely estimated but economically small volatility change, not broad dominance.
 
-Table 7 Test forecast accuracy for complete monthly labels
-
-{{table:prediction}}
-
-Feature ablations keep the selected depth and ML penalty fixed. Every ablation retains the explicit Pipeline 2 quality penalty, so removing fundamental features from CatBoost does not remove all fundamental information from the portfolio. The price-and-regime model has lower log-risk RMSE than the full model, while the full model has a slightly higher mean rank IC. Adding fundamental inputs alone does not improve the reported forecast metrics over the price-and-regime version. Broader information therefore has a metric-dependent rather than uniformly positive effect.
-
-Table 8 CatBoost feature ablation with fixed allocation settings
-
-{{table:ablation}}
-
-The most influential full-model inputs are market correlation, stress probability, drawdown and recent downside risk. These importance values are descriptive summaries of fitted trees, not causal effects; correlated features can substitute for each other. The calibration plot shows systematic differences between predicted and realized absolute risk. In particular, exponentiating a log-risk prediction need not recover mean risk. Calibrating this transformation on a future training and validation design is a plausible extension, not a correction fitted on the current test.
-
-![Figure 3 Forecast calibration by predicted risk group](figures/risk_calibration.png)
-
-Figure 3. Stocks are assigned to predicted-risk quintiles within each month, then group outcomes are averaged. The plot assesses calibration on complete test labels and does not define a trading rule selected from those groups.
-
-### 6.4 Uncertainty and implementation sensitivity
-
-Table 9 reports the 20-session block intervals for sequential model differences. The volatility reduction from the baseline to Pipeline 1 excludes zero, as does the much smaller reduction from Pipeline 2 to Pipeline 3. Their signs also persist with 10- and 60-session blocks. The favorable changes in CVaR95 and maximum drawdown do not exclude zero under these checks. The Pipeline 2 minus Pipeline 1 Sharpe interval includes zero with 10- and 20-session blocks but is negative with 60-session blocks, reinforcing the sensitivity of statistical conclusions to the dependence assumption.
-
-Table 9 Incremental test differences with paired bootstrap intervals
+Table 8. Paired moving-block bootstrap, 20-session blocks / Таблица 8. Парный блочный бутстрэп, блоки по 20 торговых сессий
 
 {{table:bootstrap}}
 
-Trading-cost sensitivity holds gross returns and target paths fixed and recomputes net returns at 0, 10, 25 and 50 bps. At 50 bps, the baseline CAGR is 7.76% and Pipeline 1 CAGR is 7.80%, much closer than at 10 bps. The lower-turnover quality and CatBoost portfolios retain CAGRs of approximately 6.64% and 6.67%. Lower turnover reduces implementation drag but does not offset their lower gross return on this sample.
+### 5.4 Forecast diagnostics
 
-Table 10 CAGR sensitivity to proportional trading costs
+CatBoost is compared with trailing downside risk using 19,703 complete stock-month labels across 61 formation months. It lowers log-risk RMSE from 0.959 to 0.893 and raises mean monthly rank correlation from 0.467 to 0.532. This supports H3 at the forecasting stage. The portfolio result is weaker because constraints and the existing covariance and quality penalties absorb much of the forecast variation.
+
+Table 9. Test downside-risk forecast diagnostics / Таблица 9. Диагностика прогноза риска снижения на тестовой выборке
+
+{{table:prediction}}
+
+Table 10. CatBoost feature-block ablation / Таблица 10. Абляционный анализ блоков признаков CatBoost
+
+{{table:ablation}}
+
+The feature ablation is a negative result: prices and regime variables alone obtain RMSE 0.880 and mean rank correlation 0.532, while the full information set obtains RMSE 0.893 and rank correlation 0.532. Fundamentals and reporting-process variables therefore do not improve test forecast accuracy at the frozen hyperparameters. Their main empirical role is the explicit quality penalty in Pipeline 2, not additional CatBoost prediction power.
+
+Figure 3. Predicted and realized downside risk by forecast quintile / Рисунок 3. Прогнозный и реализованный риск снижения по квинтилям прогноза
+
+![Downside-risk calibration by monthly forecast quintile](figures/risk_calibration.png)
+
+### 5.5 Costs and explanatory controls
+
+High turnover makes optimized strategies sensitive to costs. At 50 basis points, CAGR falls to about 5.06% for baseline GMV, 5.02% for Pipeline 1, 5.67% for Pipeline 2, and 5.76% for Pipeline 3. Equal weighting remains less costly because monthly target weights are unchanged and only drift is rebalanced.
+
+Table 11. CAGR under alternative proportional trading costs / Таблица 11. CAGR при альтернативных пропорциональных торговых издержках
 
 {{table:costs}}
 
-An additional one-month delay in the already dated quality score provides a publication-lag sensitivity check, with the primary strength unchanged. Annual and formation-regime summaries are also saved with the experiment. The 2026 annual row contains a partial-year return, not an annualized full-year performance estimate. Regime-conditioned results group sessions by the probability known at their monthly formation date and should not be interpreted as retrospectively optimal timing rules.
+A neutral-score diagnostic applies the same diagonal penalty form without company ranking; a historical-risk diagnostic replaces CatBoost predictions with trailing downside risk at the selected eta. These are post-evaluation explanatory controls rather than new confirmatory strategies. They show how much of the outcome can arise from generic regularization and persistence in downside risk. Accordingly, the quality result should be interpreted as evidence for the full dated regularization procedure, not as a clean causal estimate of accounting information alone.
 
-### 6.5 Explanatory regularization controls
+## 6. Discussion
 
-The neutral-quality and historical-risk controls were introduced after the main evaluation to explain mechanisms. They do not alter the frozen primary settings and are not independent confirmatory tests. Setting every quality score to 0.5 produces effective breadth of 17.70 and CAGR of 7.99%, close to the quality model's 17.12 and 8.04%. The actual quality score improves CVaR95 relative to this neutral control but has a larger maximum drawdown. Much of the breadth change is therefore compatible with generic diagonal regularization.
+H1 receives weak support. Regime conditioning changes covariance estimates, but the realized portfolio differences are small relative to the already regularized baseline. This is consistent with the possibility that shrinkage and constraints absorb much of the benefit from time-varying dependence [3,15,16].
 
-Replacing CatBoost's risk forecast with trailing downside semivariance at the same ML strength yields CAGR of 8.06%, volatility of 13.064% and maximum drawdown of 17.587%. These values are competitive with, and on these measures slightly better than, the learned-risk version. The comparison does not establish a universally better historical-risk model, but it prevents attributing all benefits of an added diagonal term to machine learning.
+H2 receives the strongest portfolio-level support. The quality penalty improves several economically relevant outcomes simultaneously and broadens the optimized portfolio. The result survives the change from 50 stocks to all 323 complete-history stocks and reverses the earlier small-sample narrative in which quality mainly reduced return. Nevertheless, bootstrap intervals and the neutral penalty control preclude a strong causal claim.
 
-## 7 Discussion and limitations
+H3 is supported for risk prediction but only weakly for allocation. The model ranks future downside risk better than the historical comparator, yet incremental changes in the constrained portfolio are small. This distinction matters: predictive accuracy is an intermediate outcome, not proof of investment value [6–9].
 
-The experiment separates three mechanisms that are often combined in a single complex allocation model. Regime adaptation changes the estimated dependence structure. Fundamental quality changes the cost of concentration in particular issuers. CatBoost adds a forecast of marginal downside risk. The mechanisms can affect different dimensions of the portfolio, and the validation criterion explicitly values diversification and turnover in addition to return and tail risk. A strategy selected under this criterion need not maximize test Sharpe or CAGR.
+The comparison with equal weighting is also substantive. GMV reduces volatility by more than four percentage points but gives up approximately half the equal-weight CAGR. The article therefore does not claim that the optimized pipeline is globally best. It identifies a lower-risk family and asks which information layers improve that family.
 
-The strongest observed optimized Sharpe belongs to the regime model, but its higher turnover makes the result sensitive to implementation cost. Quality regularization substantially changes breadth and turnover, yet the neutral-score control indicates that this effect is not uniquely attributable to fundamentals. The ML layer improves a historical risk forecast but has only limited influence on the constrained solution. A strong existing covariance model, common concentration restrictions, correlated input signals and the modest selected penalty are plausible explanations; the current controls do not causally identify their separate contributions.
+## 7. Limitations and reproducibility
 
-Several limitations constrain generalization. First, the fixed 50-stock universe is small, alphabetically concentrated and selected using long complete histories. It cannot support claims about an unbiased US market universe, historical index membership or emerging markets. Second, the test sample was previously visible in the original baseline notebook. New hyperparameters were selected without test optimization, but the complete research process is not a pristine preregistered holdout experiment. The comparison is an exploratory extension of an existing study.
+The complete-history rule creates survivorship bias and uses knowledge of full-period coverage. Historical index membership and delisted firms are unavailable. The universe is US large cap, sector-neutrality is not imposed, and SEC concept availability varies across industries. Provider-adjusted prices, idealized close execution, proportional costs, and no market-impact or capacity constraint limit implementation realism. The 2026 observation ends on 20 February and is not a full year.
 
-Third, the price provider's adjustment conventions have not been independently reconciled with dividends, splits and delisting proceeds. Fourth, financial-statement reconstruction relies on a current aggregate archive, imperfect concept coverage and issuer identity links. The filing embargo prevents obvious future-report leakage but does not certify a complete immutable point-in-time database. Industry-specific financial ratios and historically appropriate sector classifications remain an important extension.
+The 2021–2026 period is excluded from hyperparameter selection. It remains a walk-forward evaluation in which annual models may learn from earlier, fully matured observations, as they could in real time. However, the original project had displayed this period before the present redesign; the complete research program is therefore exploratory rather than preregistered. A fresh future holdout is still needed for confirmatory evidence.
 
-Fifth, trading at the close that supplies the latest signal is idealized. Fixed proportional costs omit intraday execution, market impact, minimum lots, taxes and portfolio capacity. Sixth, Sharpe and Sortino use zero benchmark rates; comparison with cash or a risk-free asset would require an additional dated rate series. Seventh, CVaR99 is based on only about 13 test-tail observations, and maximum drawdown is highly path-dependent. Both are uncertain summaries of a single realized sample.
+Reproduction is controlled by a dated environment lock, deterministic seeds, raw-source and split SHA-256 hashes, a frozen specification with code hashes, point-in-time SEC lineage, executable notebooks, stored daily returns and weights, and an audit that recomputes summary metrics. The universe-selection script documents the exact 323-of-472 rule. The local SEC archive is large and externally mutable; exact third-party replication requires a byte-identical source snapshot matching the recorded hash. This is the remaining data-distribution dependency, not an analytical ambiguity.
 
-Finally, the model search is deliberately compact and does not vary every covariance window, HMM state definition or allocation objective. The two-state labels are descriptive, Gaussian emissions simplify extreme behavior, and the covariance mixture omits between-state mean variation. The ML target and squared-error loss are not optimized directly for portfolio utility. A nested chronological validation design on a broader historical universe, followed by an untouched forward period, would provide a stronger next test than further tuning against the present evaluation window.
+## 8. Conclusion
 
-## 8 Conclusion
+Expanding the universe changes the scientific storyline. The main finding is no longer that additional information merely complicates a 50-stock optimizer. Across 323 complete-history stocks, point-in-time corporate-quality regularization improves the optimized portfolio's return, Sharpe ratio, drawdown, turnover, and diversification relative to a regime-only covariance. CatBoost improves downside-risk forecasts and adds a small further volatility and drawdown reduction. Regime conditioning alone contributes little.
 
-Adding market regimes, company fundamentals and machine learning does not produce a sequence of universally superior portfolios in this experiment. The regime-aware model delivers the best observed Sharpe among optimized strategies and modestly lower volatility than the shrinkage GMV baseline. The quality layer increases diversification and reduces turnover while lowering return. CatBoost improves individual risk forecasts relative to a historical comparator, but its marginal portfolio benefit is small and a simple historical-risk penalty remains competitive.
-
-The practical implication is to evaluate additional information at several distinct stages: its historical availability, its predictive content, its effect on feasible weights and its realized value after implementation costs. On the supplied sample, transparent controls and consistent accounting are more informative than a claim that complexity must win. The findings support further investigation of regime adaptation and quality-based regularization while leaving broad investment superiority unestablished.
-
-## Data and code availability
-
-The accompanying repository contains the executed English-language notebooks, shared implementation, validation grids, dated predictions, allocation paths, metric tables and frozen run metadata: https://github.com/melnikovknst/Invest-Portfolio-Optimization. Raw price files, the SEC archive, local environments and disposable caches are excluded from version control. Their expected locations, source identity and hashes are documented so that users with the same local inputs can reproduce the analysis. The repository does not redistribute a complete historical constituent database. The article tables are generated from the saved experiment outputs and all reported main results use the corrected common accounting engine.
+The defensible conclusion is conditional. Equal weighting remains superior on return and Sharpe but carries higher volatility. Within the low-volatility optimized family, quality regularization is the most economically meaningful addition; machine learning is useful mainly as a risk-ranking refinement. Future work should use a historical-constituent universe, sector-aware quality scores, market-impact constraints, and a genuinely untouched forward period.
 
 ## References
 
 {{references}}
-
-## Appendix A Fixed implementation settings
-
-Table A1 Settings retained in the reported experiment
-
-{{table:settings}}
-
-## Appendix B Reproduction and interpretation checks
-
-The original experiment at repository commit 93676de retained five executed notebooks: 52 code cells, 21 embedded figures and 60 HTML table outputs, with no execution errors. Its recorded eight unit and temporal tests passed, zero-strength controls recovered the preceding pipeline, and that commit's mathematical source hashes match the frozen specification. These are records of the original run, not a claim that subsequently edited code has been re-executed.
-
-A subsequent repository review reconciled all 16 retained strategy–split result folders, including accounting, weight constraints and metric calculations; maximum metric discrepancy was below 5 × 10^-14. Validation selection, forecast summaries, cost and annual summaries, and all 15 paired-bootstrap comparison–block combinations were also recomputed from saved evidence. Four benchmark quality-exposure summaries disagree with neutral placeholders in detailed exports: three validation controls and test equal weighting. Those original files are retained for provenance, and the disputed article entry is withheld in Table 6. Reconstructing measured monthly exposure requires the original SEC snapshots.
-
-The reviewed implementation adds calendar-alignment checks, missing-issuer handling, asset-aware cache fingerprints, protected benchmark exports and explicit failure status. Offline tests include synthetic HMM and CatBoost future-information perturbations. The original raw inputs were unavailable in the review checkout, so the two real-data integration checks and a full economic rerun could not be repeated. Current source hashes intentionally differ from the historical freeze; no new test performance is claimed. The review supplements, rather than replaces, the original experiment and does not remove its economic or data limitations.
-
-The primary comparison notebook recomputes performance from stored daily paths and target weights before presenting the tables. The run manifest records input fingerprints, selected settings and completed notebook execution. Any future change to economic code or source inputs requires renewed validation, a new frozen specification and regenerated outputs. Presentation edits alone do not constitute a new experiment. A complete rerun begins with the experiment driver, then executes all notebooks, runs the tests and rebuilds this article from the saved results.

@@ -35,6 +35,7 @@ ax.grid(axis='y', alpha=.2)
 save(fig, 'quality_coverage')
 
 fig, axes = plt.subplots(2, 1, figsize=(6.8, 5.6), sharex=True, layout='constrained')
+drawdown_min = 0.0
 for name, label, color in zip(NAMES, LABELS, COLORS):
     df = pd.read_csv(ROOT / f'artifacts/results/test/{name}/daily_returns.csv', parse_dates=['date']).set_index('date')
     wealth = (1 + df.net_return).cumprod()
@@ -42,9 +43,15 @@ for name, label, color in zip(NAMES, LABELS, COLORS):
     style = '--' if name == 'pipeline3' else '-'
     axes[0].plot(wealth.index, wealth, color=color, label=label, lw=1.25, ls=style)
     axes[1].plot(dd.index, dd, color=color, lw=1.1, ls=style)
+    drawdown_min = min(drawdown_min, float(dd.min()))
 axes[0].set(ylabel='Net wealth', title='Growth of unit initial capital')
 axes[0].legend(ncol=3, loc='upper left', frameon=False)
 axes[1].set(ylabel='Drawdown', xlabel='Test date')
+# Drawdowns are non-positive by construction. Add explicit headroom above zero so
+# recovery points do not disappear into the upper axes boundary in Word/PDF renders.
+drawdown_floor = min(-0.05, np.floor((drawdown_min - 0.005) / 0.025) * 0.025)
+axes[1].set_ylim(drawdown_floor, 0.0125)
+axes[1].axhline(0, color='#333333', lw=.7, alpha=.75, zorder=1)
 axes[1].yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 for ax in axes: ax.grid(axis='y', alpha=.2)
 save(fig, 'test_performance')

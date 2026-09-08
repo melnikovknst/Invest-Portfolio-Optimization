@@ -2,7 +2,7 @@
 
 Five executed, English-language research notebooks compare equal weighting, a constrained Ledoit–Wolf GMV baseline, regime-aware covariance, corporate-quality regularization, and CatBoost downside-risk forecasts. The primary comparison holds the investment universe, rolling window, trading schedule, concentration cap and cost model fixed.
 
-**Review status (7 September 2026):** saved outputs belong to experiment commit `93676de`. The current source includes review fixes and intentionally no longer matches that historical freeze. The original outputs are preserved, not relabelled as a new run. See [REVIEW.md](REVIEW.md) for verified calculations, four quality-exposure export discrepancies and the raw-data reproduction boundary. Restore the original inputs and run the experiment driver before running all notebook cells with the updated code.
+**Run status (7 September 2026):** the complete-history experiment has been rebuilt on 323 stocks and 2,123,079 price observations. Validation selects `lambda=0.5`, CatBoost depth 4 and `eta=0.25`; the frozen code and input hashes are stored in `artifacts/frozen_spec.json`. The five English notebooks are executed from top to bottom after the experiment driver.
 
 ## Start here
 
@@ -13,15 +13,15 @@ The full article is [Portfolio optimization.docx](Portfolio%20optimization.docx)
 3. `pipeline3_catboost_risk_gmv.ipynb` — feature panel, 21-session downside-risk target, purged annual refits, prediction diagnostics and portfolio effects.
 4. `baseline.ipynb` and `pipeline1_regime_aware_gmv.ipynb` — re-executed controls using the corrected common accounting engine.
 
-The original `price_EDA.ipynb` and `company_analisys.ipynb` are exploratory source materials. They are not downloaded or re-run by the experiment driver. In particular, `price_EDA.ipynb` must not regenerate the frozen universe from a newer Kaggle snapshot during this comparison. The article replaces the earlier working manuscript and uses the corrected common results throughout.
+The original `price_EDA.ipynb` and `company_analisys.ipynb` are exploratory source materials. The reproducible universe is now created by `scripts/prepare_full_history_universe.py`, not by either exploratory notebook. The article replaces the earlier working manuscript and uses only the common 323-stock results.
 
 ## Local inputs (ignored by Git)
 
-- `data/train.csv`, `data/val.csv`, `data/test.csv`: the original saved price splits.
-- `data/company_raw/companyfacts/CIK##########.json`: the local SEC Company Facts archive. Only 52 identified issuer files are read for 50 supplied tickers.
-- The original `SP500_Historical_Data.csv`, Kaggle dataset version 1, for trading-volume/range features. Set `PORTFOLIO_OHLCV` to its path, put it in `data/`, or retain the original Kaggle cache at `~/.cache/kagglehub/datasets/jacksaleeby/s-and-p500-historical-data/versions/1/`.
+- `data/train.csv`, `data/val.csv`, `data/test.csv`: deterministic splits containing all 323 complete-history tickers.
+- `data/company_raw/companyfacts/CIK##########.json`: the dated SEC Company Facts archive. The pipeline reads the mapped issuer files for all 323 tickers plus documented predecessor entities.
+- `SP500_Historical_Data.csv`, Kaggle dataset version 1. Set `PORTFOLIO_OHLCV`, put the file in `data/`, or retain the version-1 Kaggle cache.
 
-The extra OHLCV snapshot must reproduce every saved adjusted-price cell exactly. No online data request is required once these local inputs and the Python dependencies exist. SEC identity links and the two documented predecessor relationships are stored in `reference/`; historical facts are selected by filing availability, not by today's fiscal-year values.
+The price snapshot must match SHA-256 `82f3ab3ab6821c54b67a555c1f52c60dc4c162923499f2a1403c51d08944722a`; the SEC archive must match `a62a7c6a9bfea0d721a73ac9439b8a07a089da1eeee01aa71ef06917e8be77eb`. `scripts/fetch_inputs.py` verifies both hashes and can extract the SEC archive. Because the SEC aggregate URL is mutable, a newly downloaded file may correctly fail the strict historical hash check; exact replication then requires the archived byte-identical snapshot.
 
 ## Environment and execution
 
@@ -30,20 +30,23 @@ Python 3.12 is recommended. `requirements.txt` specifies compatible ranges; `req
 ```sh
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python scripts/fetch_inputs.py --extract
+.venv/bin/python scripts/prepare_full_history_universe.py
 .venv/bin/python scripts/run_experiments.py
+.venv/bin/python scripts/build_notebooks.py
 .venv/bin/python scripts/execute_notebooks.py
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
 Create a repository-local environment using the commands above, or use `scripts/install_environment.sh` (optionally set `PORTFOLIO_PYTHON`). It does not replace the historical dependency lock. The optional copy helper `scripts/sync_to_original.py` requires an explicit destination and refuses a dirty destination checkout; normal reproduction does not need it. The execution script defaults to an actual IPython/Jupyter **in-process kernel**, which also works in environments that prohibit local TCP listeners. It preserves rich tables, PNG figures, stdout, execution counts and errors, using a fresh process for every notebook. `--backend jupyter` uses conventional `nbclient` execution when local kernel connections are available. Failed attempts invalidate previous completion status; a successful single notebook does not certify the full run. Both backends execute the same notebook cells in order.
 
-Saved evidence can be checked without the raw inputs:
+Saved evidence and source hashes can be checked with:
 
 ```sh
 .venv/bin/python scripts/audit_saved_artifacts.py --bootstrap --output artifacts/review/saved_artifact_audit.json
 ```
 
-This checks numerical and document consistency, not the truth of the underlying data or a fresh model fit. Known quality-exposure discrepancies appear as warnings. The audit exits unsuccessfully on any failed check.
+The audit recomputes metrics from saved daily paths, verifies source and split hashes, code freeze, notebook execution, article provenance, and formal character limits. It exits unsuccessfully on any failed check.
 
 `run_experiments.py` creates the expensive inputs, performs validation-only selection, saves `artifacts/frozen_spec.json`, then evaluates the common test and predefined feature/lag ablations. `execute_notebooks.py` independently executes the research narrative and verifies the frozen selections. Changes to economic code or source files invalidate the frozen specification. Run the driver before the notebooks after such changes. Source-generation utility `scripts/build_notebooks.py` is maintained for reproducible authorship; running it clears notebook outputs, which must subsequently be re-executed.
 
@@ -71,7 +74,7 @@ The compact results and executed notebook outputs are intentionally retained for
 
 ## Interpretation limits
 
-This is a fixed, survivorship-biased, alphabetically concentrated 50-stock US panel, not a historical constituent database or emerging-market experiment. The original baseline already exposed the test period, so the new comparison is not a pristine preregistered replication. The input `Adj Close` field is used as supplied; dividend and corporate-action adjustments are not independently certified. Trading at the previous close from close-only signals is idealized; execution delays, market impact, taxes, risk-free rates and capacity limits are not modeled.
+This is a fixed, survivorship-biased 323-stock US complete-history panel, not a historical constituent database or emerging-market experiment. The deterministic rule retains all tickers with one finite positive adjusted close on each of the 6,573 source dates; it no longer uses alphabetical truncation. The 2021–2026 period is excluded from hyperparameter selection, while annual walk-forward refits use only matured earlier observations. Because the original project had already displayed the period, the full research program is exploratory rather than preregistered. The input `Adj Close` field is used as supplied; dividend and corporate-action adjustments are not independently certified. Trading at the previous close from close-only signals is idealized; execution delays, market impact, taxes, risk-free rates and capacity limits are not modeled.
 
 SEC filings have a business-day embargo and an additional check against the actual previous exchange close, including holidays. Later restatements cannot enter earlier snapshots, but a current aggregate Company Facts archive is not guaranteed to reconstruct every historical filing vintage. Quality ranks are not sector-neutral; financial companies have lower coverage of industrial-company ratios. Forecast importance is descriptive, not causal. Bootstrap intervals are conditional on selected strategies and do not adjust for all model searches. CVaR99 has only about 13 test-tail observations.
 

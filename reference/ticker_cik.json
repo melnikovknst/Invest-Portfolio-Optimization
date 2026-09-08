@@ -2,7 +2,7 @@
   {
     "ticker": "A",
     "cik": 1090872,
-    "entity_name": "AGILENT TECHNOLOGIES, INC.",
+    "entity_name": "AGILENT TECHNOLOGIES, INC.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -37,14 +37,14 @@
   {
     "ticker": "ADI",
     "cik": 6281,
-    "entity_name": "ANALOG DEVICES INC",
+    "entity_name": "Analog Devices, Inc.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "ADP",
     "cik": 8670,
-    "entity_name": "AUTOMATIC DATA PROCESSING INC",
+    "entity_name": "AUTOMATIC DATA PROCESSING, INC.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -58,49 +58,49 @@
   {
     "ticker": "AEP",
     "cik": 4904,
-    "entity_name": "AMERICAN ELECTRIC POWER CO INC",
+    "entity_name": "American Electric Power Company, Inc.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AES",
     "cik": 874761,
-    "entity_name": "AES CORP",
+    "entity_name": "THE AES CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AFL",
     "cik": 4977,
-    "entity_name": "AFLAC INC",
+    "entity_name": "Aflac Incorporated",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AIG",
     "cik": 5272,
-    "entity_name": "AMERICAN INTERNATIONAL GROUP, INC.",
+    "entity_name": "American International Group, Inc.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AJG",
     "cik": 354190,
-    "entity_name": "Arthur J. Gallagher & Co.",
+    "entity_name": "ARTHUR J. GALLAGHER & CO.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AKAM",
     "cik": 1086222,
-    "entity_name": "AKAMAI TECHNOLOGIES INC",
+    "entity_name": "Akamai Technologies, Inc",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "ALB",
     "cik": 915913,
-    "entity_name": "ALBEMARLE CORP",
+    "entity_name": "ALBEMARLE CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -128,21 +128,21 @@
   {
     "ticker": "AME",
     "cik": 1037868,
-    "entity_name": "AMETEK INC/",
+    "entity_name": "AMETEK, Inc.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AMGN",
     "cik": 318154,
-    "entity_name": "AMGEN INC",
+    "entity_name": "Amgen Inc.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AMT",
     "cik": 1053507,
-    "entity_name": "AMERICAN TOWER CORP /MA/",
+    "entity_name": "AMERICAN TOWER CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -156,21 +156,21 @@
   {
     "ticker": "APA",
     "cik": 1841666,
-    "entity_name": "APA Corp",
+    "entity_name": "APA CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "APD",
     "cik": 2969,
-    "entity_name": "Air Products & Chemicals, Inc.",
+    "entity_name": "AIR PRODUCTS AND CHEMICALS, INC.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "APH",
     "cik": 820313,
-    "entity_name": "AMPHENOL CORP /DE/",
+    "entity_name": "AMPHENOL CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -184,21 +184,21 @@
   {
     "ticker": "ATO",
     "cik": 731802,
-    "entity_name": "ATMOS ENERGY CORP",
+    "entity_name": "Atmos Energy Corp",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "AVB",
     "cik": 915912,
-    "entity_name": "AVALONBAY COMMUNITIES INC",
+    "entity_name": "AVALONBAY COMMUNITIES, INC.",
     "source": "https://www.sec.gov/Archives/edgar/data/915912/",
     "identity_only": true
   },
   {
     "ticker": "AVY",
     "cik": 8818,
-    "entity_name": "Avery Dennison Corp",
+    "entity_name": "AVERY DENNISON CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -219,49 +219,49 @@
   {
     "ticker": "BA",
     "cik": 12927,
-    "entity_name": "BOEING CO",
+    "entity_name": "THE BOEING COMPANY",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BAC",
     "cik": 70858,
-    "entity_name": "BANK OF AMERICA CORP /DE/",
+    "entity_name": "BofA Finance LLC",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BALL",
     "cik": 9389,
-    "entity_name": "BALL Corp",
+    "entity_name": "BALL CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BAX",
     "cik": 10456,
-    "entity_name": "BAXTER INTERNATIONAL INC",
+    "entity_name": "BAXTER INTERNATIONAL INC.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BBWI",
     "cik": 701985,
-    "entity_name": "Bath & Body Works, Inc.",
-    "source": "https://www.sec.gov/Archives/edgar/data/701985/000070198524000015",
+    "entity_name": "BATH & BODY WORKS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BBY",
     "cik": 764478,
-    "entity_name": "BEST BUY CO INC",
+    "entity_name": "BEST BUY CO., INC.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BEN",
     "cik": 38777,
-    "entity_name": "FRANKLIN TEMPLETON INC",
+    "entity_name": "FRANKLIN RESOURCES INC",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -283,7 +283,7 @@
     "ticker": "BK",
     "cik": 1390777,
     "entity_name": "Bank of New York Mellon Corp",
-    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "source": "https://www.sec.gov/Archives/edgar/data/1390777/",
     "identity_only": true
   },
   {
@@ -296,7 +296,7 @@
   {
     "ticker": "BKR",
     "cik": 1701605,
-    "entity_name": "Baker Hughes Co",
+    "entity_name": "Baker Hughes Company",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -310,7 +310,7 @@
   {
     "ticker": "BMY",
     "cik": 14272,
-    "entity_name": "BRISTOL MYERS SQUIBB CO",
+    "entity_name": "BRISTOL-MYERS SQUIBB COMPANY",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
@@ -331,21 +331,1932 @@
   {
     "ticker": "BSX",
     "cik": 885725,
-    "entity_name": "BOSTON SCIENTIFIC CORP",
+    "entity_name": "BOSTON SCIENTIFIC CORPORATION",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "BWA",
     "cik": 908255,
-    "entity_name": "BORGWARNER INC",
+    "entity_name": "BORGWARNER INC.",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   },
   {
     "ticker": "C",
     "cik": 831001,
-    "entity_name": "CITIGROUP INC",
+    "entity_name": "Citigroup Inc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CAG",
+    "cik": 23217,
+    "entity_name": "CONAGRA BRANDS INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CAH",
+    "cik": 721371,
+    "entity_name": "Cardinal Health, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CAT",
+    "cik": 18230,
+    "entity_name": "CATERPILLAR INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CB",
+    "cik": 896159,
+    "entity_name": "Chubb Limited",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CCI",
+    "cik": 1051470,
+    "entity_name": "CROWN CASTLE INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CCL",
+    "cik": 815097,
+    "entity_name": "Carnival Corporation Ltd.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CDNS",
+    "cik": 813672,
+    "entity_name": "CADENCE DESIGN SYSTEMS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CHRW",
+    "cik": 1043277,
+    "entity_name": "C. H. ROBINSON WORLDWIDE, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CI",
+    "cik": 1739940,
+    "entity_name": "The Cigna Group",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CINF",
+    "cik": 20286,
+    "entity_name": "CINCINNATI FINANCIAL CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CL",
+    "cik": 21665,
+    "entity_name": "COLGATE-PALMOLIVE COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CLX",
+    "cik": 21076,
+    "entity_name": "CLOROX CO /DE/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CMCSA",
+    "cik": 1166691,
+    "entity_name": "COMCAST CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CMI",
+    "cik": 26172,
+    "entity_name": "CUMMINS INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CNP",
+    "cik": 1130310,
+    "entity_name": "CENTERPOINT ENERGY INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "COF",
+    "cik": 927628,
+    "entity_name": "CAPITAL ONE FINANCIAL CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "COO",
+    "cik": 711404,
+    "entity_name": "The Cooper Companies, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "COP",
+    "cik": 1163165,
+    "entity_name": "ConocoPhillips",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "COST",
+    "cik": 909832,
+    "entity_name": "COSTCO WHOLESALE CORP /NEW",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CPB",
+    "cik": 16732,
+    "entity_name": "CAMPBELL'S Co",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CPRT",
+    "cik": 900075,
+    "entity_name": "COPART, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CPT",
+    "cik": 906345,
+    "entity_name": "CAMDEN PROPERTY TRUST",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CRH",
+    "cik": 849395,
+    "entity_name": "CRH public limited company",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CSCO",
+    "cik": 858877,
+    "entity_name": "CISCO SYSTEMS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CSGP",
+    "cik": 1057352,
+    "entity_name": "COSTAR GROUP, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CTAS",
+    "cik": 723254,
+    "entity_name": "Cintas Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CTRA",
+    "cik": 858470,
+    "entity_name": "COTERRA ENERGY INC.",
+    "source": "https://www.sec.gov/Archives/edgar/data/858470/",
+    "identity_only": true
+  },
+  {
+    "ticker": "CTSH",
+    "cik": 1058290,
+    "entity_name": "COGNIZANT TECHNOLOGY SOLUTIONS CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CVS",
+    "cik": 64803,
+    "entity_name": "CVS HEALTH CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "CVX",
+    "cik": 93410,
+    "entity_name": "Chevron Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "D",
+    "cik": 715957,
+    "entity_name": "DOMINION ENERGY, INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DD",
+    "cik": 1666700,
+    "entity_name": "DUPONT DE NEMOURS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DE",
+    "cik": 315189,
+    "entity_name": "DEERE & CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DECK",
+    "cik": 910521,
+    "entity_name": "DECKERS OUTDOOR CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DHI",
+    "cik": 882184,
+    "entity_name": "D.R. Horton, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DHR",
+    "cik": 313616,
+    "entity_name": "DANAHER CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DIS",
+    "cik": 1744489,
+    "entity_name": "WALT DISNEY CO/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DLTR",
+    "cik": 935703,
+    "entity_name": "DOLLAR TREE, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DOC",
+    "cik": 765880,
+    "entity_name": "Healthpeak Properties, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DOV",
+    "cik": 29905,
+    "entity_name": "DOVER Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DRI",
+    "cik": 940944,
+    "entity_name": "DARDEN RESTAURANTS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DTE",
+    "cik": 936340,
+    "entity_name": "DTE ENERGY CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DUK",
+    "cik": 1326160,
+    "entity_name": "Duke Energy CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DVA",
+    "cik": 927066,
+    "entity_name": "DAVITA INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "DVN",
+    "cik": 1090012,
+    "entity_name": "DEVON ENERGY CORP/DE",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EBAY",
+    "cik": 1065088,
+    "entity_name": "eBay Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ECL",
+    "cik": 31462,
+    "entity_name": "ECOLAB INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ED",
+    "cik": 1047862,
+    "entity_name": "CONSOLIDATED EDISON INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EFX",
+    "cik": 33185,
+    "entity_name": "EQUIFAX INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EIX",
+    "cik": 827052,
+    "entity_name": "EDISON INTERNATIONAL",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EL",
+    "cik": 1001250,
+    "entity_name": "Estee Lauder Companies Inc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EME",
+    "cik": 105634,
+    "entity_name": "EMCOR Group, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EMN",
+    "cik": 915389,
+    "entity_name": "EASTMAN CHEMICAL CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EMR",
+    "cik": 32604,
+    "entity_name": "EMERSON ELECTRIC CO.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EOG",
+    "cik": 821189,
+    "entity_name": "EOG RESOURCES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EQR",
+    "cik": 906107,
+    "entity_name": "Vivmark Residential",
+    "source": "https://www.sec.gov/Archives/edgar/data/906107/",
+    "identity_only": true
+  },
+  {
+    "ticker": "EQT",
+    "cik": 33213,
+    "entity_name": "EQT CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ERIE",
+    "cik": 922621,
+    "entity_name": "ERIE INDEMNITY COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ES",
+    "cik": 72741,
+    "entity_name": "EVERSOURCE ENERGY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ESS",
+    "cik": 920522,
+    "entity_name": "ESSEX PROPERTY TRUST, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ETN",
+    "cik": 1551182,
+    "entity_name": "EATON CORPORATION plc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EVRG",
+    "cik": 1711269,
+    "entity_name": "Evergy, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EXC",
+    "cik": 1109357,
+    "entity_name": "EXELON CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "EXPD",
+    "cik": 746515,
+    "entity_name": "EXPEDITORS INTERNATIONAL OF WASHINGTON, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "F",
+    "cik": 37996,
+    "entity_name": "Ford Motor Co",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FAST",
+    "cik": 815556,
+    "entity_name": "FASTENAL CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FCX",
+    "cik": 831259,
+    "entity_name": "Freeport-McMoRan Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FDS",
+    "cik": 1013237,
+    "entity_name": "FACTSET RESEARCH SYSTEMS INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FDX",
+    "cik": 1048911,
+    "entity_name": "FedEx Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FE",
+    "cik": 1031296,
+    "entity_name": "FIRSTENERGY CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FFIV",
+    "cik": 1048695,
+    "entity_name": "F5, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FICO",
+    "cik": 814547,
+    "entity_name": "FAIR ISAAC CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FITB",
+    "cik": 35527,
+    "entity_name": "FIFTH THIRD BANCORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FMC",
+    "cik": 37785,
+    "entity_name": "FMC CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "FRT",
+    "cik": 34903,
+    "entity_name": "FEDERAL REALTY INVESTMENT TRUST",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GD",
+    "cik": 40533,
+    "entity_name": "GENERAL DYNAMICS CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GE",
+    "cik": 40545,
+    "entity_name": "GENERAL ELECTRIC CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GEN",
+    "cik": 849399,
+    "entity_name": "Gen Digital Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GILD",
+    "cik": 882095,
+    "entity_name": "GILEAD SCIENCES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GIS",
+    "cik": 40704,
+    "entity_name": "General Mills, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GL",
+    "cik": 320335,
+    "entity_name": "GLOBE LIFE INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GLW",
+    "cik": 24741,
+    "entity_name": "CORNING INC /NY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GPC",
+    "cik": 40987,
+    "entity_name": "GENUINE PARTS CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GS",
+    "cik": 886982,
+    "entity_name": "The Goldman Sachs Group, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "GWW",
+    "cik": 277135,
+    "entity_name": "W.W. Grainger, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HAL",
+    "cik": 45012,
+    "entity_name": "HALLIBURTON COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HAS",
+    "cik": 46080,
+    "entity_name": "HASBRO, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HBAN",
+    "cik": 49196,
+    "entity_name": "Huntington Bancshares Incorporated",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HD",
+    "cik": 354950,
+    "entity_name": "HOME DEPOT, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HIG",
+    "cik": 874766,
+    "entity_name": "The Hartford Insurance Group, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HOLX",
+    "cik": 859737,
+    "entity_name": "HOLOGIC INC",
+    "source": "https://www.sec.gov/Archives/edgar/data/859737/",
+    "identity_only": true
+  },
+  {
+    "ticker": "HON",
+    "cik": 773840,
+    "entity_name": "Honeywell International Inc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HPQ",
+    "cik": 47217,
+    "entity_name": "HP INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HRL",
+    "cik": 48465,
+    "entity_name": "HORMEL FOODS CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HSIC",
+    "cik": 1000228,
+    "entity_name": "HENRY SCHEIN, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HST",
+    "cik": 1070750,
+    "entity_name": "HOST HOTELS & RESORTS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HSY",
+    "cik": 47111,
+    "entity_name": "HERSHEY CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HUBB",
+    "cik": 48898,
+    "entity_name": "HUBBELL INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "HUM",
+    "cik": 49071,
+    "entity_name": "HUMANA INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IBM",
+    "cik": 51143,
+    "entity_name": "INTERNATIONAL BUSINESS MACHINES CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IDXX",
+    "cik": 874716,
+    "entity_name": "IDEXX LABORATORIES INC /DE",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IFF",
+    "cik": 51253,
+    "entity_name": "INTERNATIONAL FLAVORS & FRAGRANCES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "INCY",
+    "cik": 879169,
+    "entity_name": "INCYTE CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "INTC",
+    "cik": 50863,
+    "entity_name": "INTEL CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "INTU",
+    "cik": 896878,
+    "entity_name": "INTUIT INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IP",
+    "cik": 51434,
+    "entity_name": "INTERNATIONAL PAPER COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IRM",
+    "cik": 1020569,
+    "entity_name": "IRON MOUNTAIN INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IT",
+    "cik": 749251,
+    "entity_name": "Gartner, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ITW",
+    "cik": 49826,
+    "entity_name": "ILLINOIS TOOL WORKS INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "IVZ",
+    "cik": 914208,
+    "entity_name": "Invesco Ltd.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "J",
+    "cik": 52988,
+    "entity_name": "JACOBS SOLUTIONS INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "JBHT",
+    "cik": 728535,
+    "entity_name": "J.B. HUNT TRANSPORT SERVICES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "JCI",
+    "cik": 833444,
+    "entity_name": "JOHNSON CONTROLS INTERNATIONAL PLC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "JKHY",
+    "cik": 779152,
+    "entity_name": "JACK HENRY & ASSOCIATES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "JNJ",
+    "cik": 200406,
+    "entity_name": "Johnson & Johnson",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "JPM",
+    "cik": 19617,
+    "entity_name": "JPMORGAN CHASE & CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "KEY",
+    "cik": 91576,
+    "entity_name": "KeyCorp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "KIM",
+    "cik": 879101,
+    "entity_name": "KIMCO REALTY CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "KLAC",
+    "cik": 319201,
+    "entity_name": "KLA CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "KO",
+    "cik": 21344,
+    "entity_name": "COCA COLA CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "KR",
+    "cik": 56873,
+    "entity_name": "KROGER CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "L",
+    "cik": 60086,
+    "entity_name": "LOEWS CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LEN",
+    "cik": 920760,
+    "entity_name": "LENNAR CORP /NEW/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LHX",
+    "cik": 202058,
+    "entity_name": "L3HARRIS TECHNOLOGIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LII",
+    "cik": 1069202,
+    "entity_name": "LENNOX INTERNATIONAL INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LIN",
+    "cik": 1707925,
+    "entity_name": "Linde plc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LLY",
+    "cik": 59478,
+    "entity_name": "ELI LILLY AND COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LMT",
+    "cik": 936468,
+    "entity_name": "LOCKHEED MARTIN CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LNT",
+    "cik": 352541,
+    "entity_name": "ALLIANT ENERGY CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LOW",
+    "cik": 60667,
+    "entity_name": "LOWES COMPANIES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LRCX",
+    "cik": 707549,
+    "entity_name": "LAM RESEARCH CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "LUV",
+    "cik": 92380,
+    "entity_name": "SOUTHWEST AIRLINES CO.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MAA",
+    "cik": 912595,
+    "entity_name": "MID-AMERICA APARTMENT COMMUNITIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MAR",
+    "cik": 1048286,
+    "entity_name": "MARRIOTT INTERNATIONAL INC /MD/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MAS",
+    "cik": 62996,
+    "entity_name": "Masco Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MCD",
+    "cik": 63908,
+    "entity_name": "McDONALD’S CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MCHP",
+    "cik": 827054,
+    "entity_name": "MICROCHIP TECHNOLOGY INCORPORATED",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MCK",
+    "cik": 927653,
+    "entity_name": "McKESSON CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MCO",
+    "cik": 1059556,
+    "entity_name": "MOODY'S CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MDT",
+    "cik": 1613103,
+    "entity_name": "Medtronic plc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MGM",
+    "cik": 789570,
+    "entity_name": "MGM Resorts International",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MHK",
+    "cik": 851968,
+    "entity_name": "MOHAWK INDUSTRIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MKC",
+    "cik": 63754,
+    "entity_name": "McCORMICK & COMPANY, INCORPORATED",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MLM",
+    "cik": 916076,
+    "entity_name": "MARTIN MARIETTA MATERIALS INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MMM",
+    "cik": 66740,
+    "entity_name": "3M COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MNST",
+    "cik": 865752,
+    "entity_name": "Monster Beverage Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MO",
+    "cik": 764180,
+    "entity_name": "Altria Group, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MRK",
+    "cik": 310158,
+    "entity_name": "Merck & Co., Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MS",
+    "cik": 895421,
+    "entity_name": "MORGAN STANLEY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MSFT",
+    "cik": 789019,
+    "entity_name": "MICROSOFT CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MSI",
+    "cik": 68505,
+    "entity_name": "Motorola Solutions, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MSTR",
+    "cik": 1050446,
+    "entity_name": "STRATEGY INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MTB",
+    "cik": 36270,
+    "entity_name": "M&T BANK CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MTCH",
+    "cik": 891103,
+    "entity_name": "Match Group, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MTD",
+    "cik": 1037646,
+    "entity_name": "Mettler-Toledo International Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "MU",
+    "cik": 723125,
+    "entity_name": "Micron Technology, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NEE",
+    "cik": 753308,
+    "entity_name": "NEXTERA ENERGY INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NEM",
+    "cik": 1164727,
+    "entity_name": "NEWMONT CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NI",
+    "cik": 1111711,
+    "entity_name": "NISOURCE INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NKE",
+    "cik": 320187,
+    "entity_name": "NIKE, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NOC",
+    "cik": 1133421,
+    "entity_name": "NORTHROP GRUMMAN CORP /DE/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NSC",
+    "cik": 702165,
+    "entity_name": "NORFOLK SOUTHERN CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NTAP",
+    "cik": 1002047,
+    "entity_name": "NetApp, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NTRS",
+    "cik": 73124,
+    "entity_name": "NORTHERN TRUST CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NUE",
+    "cik": 73309,
+    "entity_name": "NUCOR CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "NVDA",
+    "cik": 1045810,
+    "entity_name": "NVIDIA CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "O",
+    "cik": 726728,
+    "entity_name": "REALTY INCOME CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ODFL",
+    "cik": 878927,
+    "entity_name": "OLD DOMINION FREIGHT LINE, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "OKE",
+    "cik": 1039684,
+    "entity_name": "ONEOK INC /NEW/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ORCL",
+    "cik": 1341439,
+    "entity_name": "Oracle Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ORLY",
+    "cik": 898173,
+    "entity_name": "O REILLY AUTOMOTIVE INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PAYX",
+    "cik": 723531,
+    "entity_name": "Paychex, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PCAR",
+    "cik": 75362,
+    "entity_name": "PACCAR Inc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PEG",
+    "cik": 788784,
+    "entity_name": "Public Service Enterprise Group Incorporated",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PEP",
+    "cik": 77476,
+    "entity_name": "PepsiCo, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PFE",
+    "cik": 78003,
+    "entity_name": "PFIZER INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PG",
+    "cik": 80424,
+    "entity_name": "The Procter & Gamble Company",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PGR",
+    "cik": 80661,
+    "entity_name": "PROGRESSIVE CORP/OH/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PH",
+    "cik": 76334,
+    "entity_name": "Parker-Hannifin Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PHM",
+    "cik": 822416,
+    "entity_name": "PULTEGROUP, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PLD",
+    "cik": 1045609,
+    "entity_name": "Prologis, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PNC",
+    "cik": 713676,
+    "entity_name": "PNC Financial Services Group, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PNR",
+    "cik": 77360,
+    "entity_name": "Pentair plc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "POOL",
+    "cik": 945841,
+    "entity_name": "POOL CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PPG",
+    "cik": 79879,
+    "entity_name": "PPG INDUSTRIES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PPL",
+    "cik": 922224,
+    "entity_name": "PPL Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PSA",
+    "cik": 1393311,
+    "entity_name": "Public Storage",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "PWR",
+    "cik": 1050915,
+    "entity_name": "QUANTA SERVICES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "QCOM",
+    "cik": 804328,
+    "entity_name": "QUALCOMM INC/DE",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RCL",
+    "cik": 884887,
+    "entity_name": "ROYAL CARIBBEAN CRUISES LTD",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "REG",
+    "cik": 910606,
+    "entity_name": "REGENCY CENTERS CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "REGN",
+    "cik": 872589,
+    "entity_name": "REGENERON PHARMACEUTICALS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RF",
+    "cik": 1281761,
+    "entity_name": "Regions Financial Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RHI",
+    "cik": 315213,
+    "entity_name": "ROBERT HALF INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RJF",
+    "cik": 720005,
+    "entity_name": "RAYMOND JAMES FINANCIAL, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RL",
+    "cik": 1037038,
+    "entity_name": "Ralph Lauren Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RMD",
+    "cik": 943819,
+    "entity_name": "ResMed Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ROK",
+    "cik": 1024478,
+    "entity_name": "Rockwell Automation, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ROL",
+    "cik": 84839,
+    "entity_name": "ROLLINS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ROP",
+    "cik": 882835,
+    "entity_name": "ROPER TECHNOLOGIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ROST",
+    "cik": 745732,
+    "entity_name": "Ross Stores, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RSG",
+    "cik": 1060391,
+    "entity_name": "REPUBLIC SERVICES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RTX",
+    "cik": 101829,
+    "entity_name": "RTX CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "RVTY",
+    "cik": 31791,
+    "entity_name": "REVVITY, INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SBAC",
+    "cik": 1034054,
+    "entity_name": "SBA COMMUNICATIONS CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SBUX",
+    "cik": 829224,
+    "entity_name": "Starbucks Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SCHW",
+    "cik": 316709,
+    "entity_name": "SCHWAB CHARLES CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SEE",
+    "cik": 1012100,
+    "entity_name": "SEALED AIR CORP/DE",
+    "source": "https://www.sec.gov/Archives/edgar/data/1012100/",
+    "identity_only": true
+  },
+  {
+    "ticker": "SHW",
+    "cik": 89800,
+    "entity_name": "THE SHERWIN-WILLIAMS COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SJM",
+    "cik": 91419,
+    "entity_name": "The J. M. Smucker Company",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SLB",
+    "cik": 87347,
+    "entity_name": "SLB LIMITED/NV",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SNA",
+    "cik": 91440,
+    "entity_name": "Snap-on Inc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SNPS",
+    "cik": 883241,
+    "entity_name": "SYNOPSYS INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SO",
+    "cik": 92122,
+    "entity_name": "SOUTHERN CO",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SPG",
+    "cik": 1063761,
+    "entity_name": "SIMON PROPERTY GROUP, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SPGI",
+    "cik": 64040,
+    "entity_name": "S&P Global Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SRE",
+    "cik": 1032208,
+    "entity_name": "SEMPRA",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "STE",
+    "cik": 1757898,
+    "entity_name": "STERIS plc",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "STLD",
+    "cik": 1022671,
+    "entity_name": "Steel Dynamics, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "STT",
+    "cik": 93751,
+    "entity_name": "STATE STREET CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "STZ",
+    "cik": 16918,
+    "entity_name": "CONSTELLATION BRANDS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SWK",
+    "cik": 93556,
+    "entity_name": "STANLEY BLACK & DECKER, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SWKS",
+    "cik": 4127,
+    "entity_name": "SKYWORKS SOLUTIONS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SYK",
+    "cik": 310764,
+    "entity_name": "STRYKER CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "SYY",
+    "cik": 96021,
+    "entity_name": "Sysco Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "T",
+    "cik": 732717,
+    "entity_name": "AT&T INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TAP",
+    "cik": 24545,
+    "entity_name": "Molson Coors Beverage Company",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TDY",
+    "cik": 1094285,
+    "entity_name": "TELEDYNE TECHNOLOGIES INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TECH",
+    "cik": 842023,
+    "entity_name": "BIO-TECHNE Corp",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TER",
+    "cik": 97210,
+    "entity_name": "TERADYNE, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TFC",
+    "cik": 92230,
+    "entity_name": "TRUIST FINANCIAL CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TGT",
+    "cik": 27419,
+    "entity_name": "Target Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TJX",
+    "cik": 109198,
+    "entity_name": "The TJX Companies, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TMO",
+    "cik": 97745,
+    "entity_name": "THERMO FISHER SCIENTIFIC INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TPL",
+    "cik": 1811074,
+    "entity_name": "Texas Pacific Land Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TRMB",
+    "cik": 864749,
+    "entity_name": "TRIMBLE INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TROW",
+    "cik": 1113169,
+    "entity_name": "PRICE T ROWE GROUP INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TRV",
+    "cik": 86312,
+    "entity_name": "TRAVELERS COMPANIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TSCO",
+    "cik": 916365,
+    "entity_name": "TRACTOR SUPPLY CO /DE/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TT",
+    "cik": 1466258,
+    "entity_name": "TRANE TECHNOLOGIES PLC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TTWO",
+    "cik": 946581,
+    "entity_name": "TAKE-TWO INTERACTIVE SOFTWARE, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TXN",
+    "cik": 97476,
+    "entity_name": "TEXAS INSTRUMENTS INCORPORATED",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TXT",
+    "cik": 217346,
+    "entity_name": "Textron Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "TYL",
+    "cik": 860731,
+    "entity_name": "TYLER TECHNOLOGIES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "UDR",
+    "cik": 74208,
+    "entity_name": "UDR, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "UNH",
+    "cik": 731766,
+    "entity_name": "UnitedHealth Group Incorporated",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "UNP",
+    "cik": 100885,
+    "entity_name": "UNION PACIFIC CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "UPS",
+    "cik": 1090727,
+    "entity_name": "UNITED PARCEL SERVICE INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "USB",
+    "cik": 36104,
+    "entity_name": "US BANCORP \\DE\\",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "VFC",
+    "cik": 103379,
+    "entity_name": "V. F. CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "VLO",
+    "cik": 1035002,
+    "entity_name": "VALERO ENERGY CORP/TX",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "VMC",
+    "cik": 1396009,
+    "entity_name": "VULCAN MATERIALS COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "VRTX",
+    "cik": 875320,
+    "entity_name": "VERTEX PHARMACEUTICALS INC / MA",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "VTRS",
+    "cik": 1792044,
+    "entity_name": "VIATRIS INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "VZ",
+    "cik": 732712,
+    "entity_name": "VERIZON COMMUNICATIONS INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WAB",
+    "cik": 943452,
+    "entity_name": "WESTINGHOUSE AIR BRAKE TECHNOLOGIES CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WAT",
+    "cik": 1000697,
+    "entity_name": "Waters Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WDC",
+    "cik": 106040,
+    "entity_name": "WESTERN DIGITAL CORPORATION",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WEC",
+    "cik": 783325,
+    "entity_name": "WEC ENERGY GROUP, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WELL",
+    "cik": 766704,
+    "entity_name": "WELLTOWER INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WFC",
+    "cik": 72971,
+    "entity_name": "WELLS        FARGO & COMPANY/MN",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WHR",
+    "cik": 106640,
+    "entity_name": "WHIRLPOOL CORP /DE/",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WM",
+    "cik": 823768,
+    "entity_name": "WASTE MANAGEMENT INC",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WMB",
+    "cik": 107263,
+    "entity_name": "Williams Companies, Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WMT",
+    "cik": 104169,
+    "entity_name": "WALMART INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WRB",
+    "cik": 11544,
+    "entity_name": "W. R. BERKLEY CORP",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WSO",
+    "cik": 105016,
+    "entity_name": "WATSCO, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WST",
+    "cik": 105770,
+    "entity_name": "WEST PHARMACEUTICAL SERVICES, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "WY",
+    "cik": 106535,
+    "entity_name": "WEYERHAEUSER COMPANY",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "XEL",
+    "cik": 72903,
+    "entity_name": "Xcel Energy Inc.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "XOM",
+    "cik": 2115436,
+    "entity_name": "Exxon Mobil Corporation",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "YUM",
+    "cik": 1041061,
+    "entity_name": "YUM! BRANDS, INC.",
+    "source": "https://www.sec.gov/files/company_tickers_exchange.json",
+    "identity_only": true
+  },
+  {
+    "ticker": "ZBRA",
+    "cik": 877212,
+    "entity_name": "Zebra Technologies Corporation",
     "source": "https://www.sec.gov/files/company_tickers_exchange.json",
     "identity_only": true
   }

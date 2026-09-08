@@ -46,9 +46,11 @@ def metrics_table(name, columns):
     return [['Strategy']+[h for h,_,_,_ in columns]]+rows
 
 def tables():
+    universe = json.loads((ART / 'tables' / 'universe_audit.json').read_text())
+    split_rows = universe['split_rows']
     common = [('CAGR','CAGR','pct',2),('Volatility','Annualized Volatility','pct',2),('Sharpe','Sharpe','num',3),('CVaR95','CVaR 95%','pct',3),('Max drawdown','Maximum Drawdown','pct',2)]
     out = {
-        'splits': [['Split','Price dates','Sessions','Rows','Role'],['Train','2000-01-03 to 2016-12-30','4,277','213,850','Historical estimation'],['Validation','2017-01-03 to 2020-12-31','1,007','50,350','New parameter selection'],['Test','2021-01-04 to 2026-02-20','1,289','64,450','Common evaluation']],
+        'splits': [['Split','Price dates','Sessions','Rows','Role'],['Train','2000-01-03 to 2016-12-30','4,277',f"{split_rows['train.csv']:,}",'Historical estimation'],['Validation','2017-01-03 to 2020-12-31','1,007',f"{split_rows['val.csv']:,}",'Parameter selection'],['Test','2021-01-04 to 2026-02-20','1,289',f"{split_rows['test.csv']:,}",'Common evaluation']],
         'quality': [['Domain','Ratio definitions','Favorable direction'],['Profitability','Net income / assets; operating income / revenue','Higher; higher'],['Balance sheet','Equity / assets; cash / assets; liabilities / assets','Higher; higher; lower'],['Cash generation','CFO / assets; (net income − CFO) / assets; (CFO − capital expenditure) / assets','Higher; lower; higher'],['Liquidity','Current assets / current liabilities','Higher']],
         'features': [['Block','Inputs','Examples'],['Price and regimes','21','Momentum, reversal, volatility, drawdown, beta, residual risk, covariance diagonals, HMM probability, market correlation'],['Fundamentals','13','Nine ratios, revenue growth, log assets, quality score and coverage'],['Activity and reporting','12','Volume, illiquidity proxy, range, filing age and lag, amendments, missingness, month seasonality'],['Categorical identity','1 category','Ticker; total feature count is 47']],
         'validation': metrics_table('validation_metrics.csv',common),
@@ -56,7 +58,7 @@ def tables():
         'implementation': metrics_table('test_metrics.csv',[('Sortino','Sortino','num',3),('CVaR99','CVaR 99%','pct',3),('Turnover / year','Annualized Turnover','num',2),('Effective assets','Average Effective Assets','num',2),('Quality exposure','Average Portfolio Quality','num',3)]),
         'prediction': [['Forecast','Stock months','Months','Log risk RMSE','Mean rank IC']] + [[r['model'],r['rows'],r['months'],num(r['log_risk_RMSE']),num(r['mean_monthly_rank_IC'])] for r in read_csv('test_prediction_metrics.csv')],
         'ablation': [['CatBoost features','Log risk RMSE','Mean rank IC','Median rank IC']] + [[{'price_regime':'Prices and regimes','plus_fundamentals':'Plus fundamentals','full':'Full information'}[r['']],num(r['log_risk_RMSE']),num(r['mean_monthly_rank_IC']),num(r['median_monthly_rank_IC'])] for r in read_csv('test_forecast_feature_ablation.csv')],
-        'settings': [['Component','Reported setting'],['Universe and schedule','50 fixed stocks; monthly formation; long only; fully invested; 15% cap'],['Covariance','252 prior sessions; Ledoit–Wolf scaled-identity shrinkage'],['HMM history','2,520 observations maximum; 756 minimum; two Gaussian states'],['HMM fitting','Five starts; 500 iterations; tolerance 10^-4; seed 20260902 plus restart'],['HMM signals','Market return; volatility 20; drawdown 63; correlation 60 sessions'],['State covariance','252 sessions; effective-sample pooling; 21-step average probability'],['Quality','Four domains; nine ratios; lambda 1; missing rank 0.5'],['CatBoost','Depth 4; 300 trees; learning rate 0.04; L2 10; eta 0.25'],['ML chronology','Annual expanding refits; 21-session labels; strict maturity purge'],['ML reproducibility','Seed 20260906; two threads; has_time enabled'],['Costs','10 bps base; two-sided turnover; initial entry; no terminal liquidation'],['Bootstrap','2,000 paired draws; blocks 10, 20 and 60; seed 20260906']]
+        'settings': [['Component','Reported setting'],["Universe and schedule",f"{universe['eligible_tickers']} complete-history stocks; monthly formation; long only; fully invested; 15% cap"],['Covariance','252 prior sessions; Ledoit–Wolf scaled-identity shrinkage'],['HMM history','2,520 observations maximum; 756 minimum; two Gaussian states'],['HMM fitting','Five starts; 500 iterations; tolerance 10^-4; seed 20260902 plus restart'],['HMM signals','Market return; volatility 20; drawdown 63; correlation 60 sessions'],['State covariance','252 sessions; effective-sample pooling; 21-step average probability'],['Quality','Four domains; nine ratios; lambda 0.5; missing rank 0.5'],['CatBoost','Depth 4; 300 trees; learning rate 0.04; L2 10; eta 0.25'],['ML chronology','Annual expanding refits; 21-session labels; strict maturity purge'],['ML reproducibility','Seed 20260906; two threads; has_time enabled'],['Costs','10 bps base; two-sided turnover; initial entry; no terminal liquidation'],['Bootstrap','2,000 paired draws; blocks 10, 20 and 60; seed 20260906']]
     }
     pairs=[('baseline','pipeline1'),('pipeline1','pipeline2'),('pipeline2','pipeline3')]
     out['bootstrap']=[['Change','Metric','Difference','95% interval']]
@@ -208,12 +210,12 @@ def main():
     s.footer_distance=Cm(.9)
     for name in ['Normal','Title','Heading 1','Heading 2','Heading 3','Caption']:
         sty=d.styles[name];sty.font.name='Times New Roman';sty.font.color.rgb=RGBColor(0,0,0)
-        sty.font.size=Pt(11)
+        sty.font.size=Pt(12)
         fonts=sty.element.get_or_add_rPr().get_or_add_rFonts()
         for a in list(fonts.attrib):
             if 'theme' in a.lower():del fonts.attrib[a]
         for a in ['ascii','hAnsi','eastAsia','cs']:fonts.set(qn('w:'+a),'Times New Roman')
-    normal=d.styles['Normal'].paragraph_format;normal.space_after=Pt(5);normal.line_spacing=1.12;normal.widow_control=True
+    normal=d.styles['Normal'].paragraph_format;normal.space_after=Pt(6);normal.line_spacing=1.0;normal.widow_control=True
     d.styles['Title'].font.size=Pt(19);d.styles['Title'].font.bold=True
     d.styles['Title'].paragraph_format.space_after=Pt(14)
     for name,size,before,after in [('Heading 1',13,13,6),('Heading 2',11.5,10,4)]:
@@ -230,7 +232,7 @@ def main():
         line=lines[i].strip();i+=1
         if not line:continue
         if line.startswith('<!-- equation:'):
-            eq_key=line.split(':',1)[1].split(' ',1)[0];continue
+            eq_key=line.split(':',1)[1].strip().split(' ',1)[0];continue
         if line=='$$':
             if not skip_tex:
                 assert eq_key in eqs,eq_key
@@ -262,7 +264,7 @@ def main():
         if re.match(r'^Table (?:\d+|A\d+) ',line) and following.startswith('{{table:'):
             p=d.add_paragraph(line,style='Caption');p.runs[0].bold=True;p.paragraph_format.keep_with_next=True;p.paragraph_format.space_before=Pt(8);continue
         if re.match(r'^Figure \d+\.',line):
-            p=d.add_paragraph(line,style='Caption');p.paragraph_format.space_after=Pt(10);continue
+            p=d.add_paragraph(line,style='Caption');p.paragraph_format.space_after=Pt(10);p.paragraph_format.keep_with_next=True;continue
         p=d.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY;inline(p,line)
     assert not skip_tex and n_eq==len(eqs)
     # Remove theme colors and paragraph border residues in every title/heading style.
@@ -272,10 +274,11 @@ def main():
             for a in list(e.attrib):
                 if 'theme' in a:del e.attrib[a]
         for e in st.element.xpath('.//w:pBdr'):e.getparent().remove(e)
-    destination=ROOT/'Portfolio optimization.docx';d.save(destination)
+    destination=ROOT/'Portfolio_optimization.docx';d.save(destination)
     prov={'source_template_sha256':hashlib.sha256(raw.encode()).hexdigest(),'experiment_manifest_sha256':hashlib.sha256((ART/'run_manifest.json').read_bytes()).hexdigest(),'frozen_spec_sha256':hashlib.sha256((ART/'frozen_spec.json').read_bytes()).hexdigest(),'tables':len(ts),'figures':3,'native_equations':n_eq,'references':len(refs),'word_count_markdown':len(re.findall(r'\b[\w-]+\b',resolved)),'docx_sha256':hashlib.sha256(destination.read_bytes()).hexdigest(),'result_table_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ART/'tables').glob('*.csv'))}}
     prov['presentation_source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'scripts/build_article_figures.py',PAPER/'references.json',PAPER/'manuscript.md',*sorted((PAPER/'figures').glob('*.png'))]}
-    prov['experiment_status']='Historical outputs retained; updated implementation requires a new raw-data validation and freeze'
+    prov['characters_with_spaces']=len(resolved)
+    prov['experiment_status']='Current 323-stock experiment completed, frozen, and notebook-executed'
     (PAPER/'article_manifest.json').write_text(json.dumps(prov,indent=2)+'\n')
     print(json.dumps({k:v for k,v in prov.items() if k in ['tables','figures','native_equations','references','word_count_markdown']},indent=2))
 
