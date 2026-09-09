@@ -50,7 +50,7 @@ axes[1].set(ylabel='Drawdown', xlabel='Test date')
 # Drawdowns are non-positive by construction. Add explicit headroom above zero so
 # recovery points do not disappear into the upper axes boundary in Word/PDF renders.
 drawdown_floor = min(-0.05, np.floor((drawdown_min - 0.005) / 0.025) * 0.025)
-axes[1].set_ylim(drawdown_floor, 0.0125)
+axes[1].set_ylim(drawdown_floor, 0.05)
 axes[1].axhline(0, color='#333333', lw=.7, alpha=.75, zorder=1)
 axes[1].yaxis.set_major_formatter(PercentFormatter(1, decimals=0))
 for ax in axes: ax.grid(axis='y', alpha=.2)

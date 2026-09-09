@@ -7,7 +7,7 @@
   "native_equations": 12,
   "references": 24,
   "word_count_markdown": 5030,
-  "docx_sha256": "5a92db5bbbe3a517b93f83db9c929c34e88e5bc5cf726cc29567f3860faa6552",
+  "docx_sha256": "46c0a980312124efbcb576dc724a56d623ad1990c99283240d1bd7e8521bc759",
   "result_table_sha256": {
     "ablation_plus_fundamentals_test_predictions.csv": "e6318f426a84d533ef6e546ec747c82b3d77d1c02ca9004183ff3f61bb344243",
     "ablation_plus_fundamentals_validation_training.csv": "76541bb33fb02a1b4d2ee8460f025c0032755e46f6dde65fd38e5d77489bd057",
@@ -42,12 +42,12 @@
   },
   "presentation_source_sha256": {
     "scripts/build_article.py": "70bbefa2393ea35ca5b34ec9d3c239df8d0475166170e604d698f2962425070c",
-    "scripts/build_article_figures.py": "5935f17ab2d427110638e3de84b183f5a1e68ca81ae54d906d62ad09b843d59a",
+    "scripts/build_article_figures.py": "5b4d72b16514d7049b3adcb1499f27276a59e5cb8195fd6807142208bee5e992",
     "paper/references.json": "b38c68d64679e3baa25ae79ccff435770612e9df2a10f08e751d4a1fe78d80b6",
     "paper/manuscript.md": "f8bd3bb7ab82c260463f3c6e5d07d17e82b6a2c8505193c9a78e03432d7636df",
     "paper/figures/quality_coverage.png": "7a762afc2e201b522c2962ac202b779e76bccf173251cdae85d7e3fccd2d7305",
     "paper/figures/risk_calibration.png": "42f19e02391d44a16180b59f383474e4764f388515c6c0fd66486356dbdb30f7",
-    "paper/figures/test_performance.png": "43321ce1b5310f42fcad71dd21ddbf82c970bae3554c137e3d9e2d093312b014"
+    "paper/figures/test_performance.png": "cf73b11878fe93bd55c8b03e2bc45991b90d74068c5a9236c31f453868624d96"
   },
   "characters_with_spaces": 35017,
   "experiment_status": "Current 323-stock experiment completed, frozen, and notebook-executed"
